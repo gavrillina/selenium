@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Runner {
@@ -11,7 +12,7 @@ public class Runner {
 		WebDriver driver;
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 		driver = new ChromeDriver();
-
+		
 		driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
@@ -23,7 +24,8 @@ public class Runner {
 		driver.findElement(By.xpath("//*[@id='pm_sidebar']/button")).click();
 		driver.findElement(By.xpath("//input[@id='autocomplete']")).sendKeys("test@mail.ru");
 	//	driver.findElement(By.xpath("//input[@placeholder='Тема']")).sendKeys("Hello my friend");
-		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='squireIframe']")));
-		driver.findElement(By.xpath("html/body/div[1]/")).sendKeys("testestrsdfsdf");
+        WebElement bodyMailFrame = driver.findElement(By.xpath("//iframe[@class = 'squireIframe']"));
+        driver.switchTo().frame(bodyMailFrame);
+        driver.findElement(By.xpath("//*/iframe/html/body/div[1]/")).sendKeys("testestrsdfsdf");
 	}
 }
