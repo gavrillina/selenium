@@ -9,12 +9,12 @@ import org.openqa.selenium.interactions.Actions;
 
 public class Runner {
 	public static void main(String[] args) {
-		createDruft();
-		//searchDruftAndSend();
+		//createDruft();
+		searchDruftAndSend();
 	}
 
 	public static void createDruft() {
-		WebDriver driver = new SeleniumDriver().firefoxDrv();
+		WebDriver driver = new SeleniumDriver().chromeDrv();
 		driver.get("https://protonmail.com");
 		driver.findElement(By.xpath("//*[@id='bs-example-navbar-collapse-1']/ul/li[7]/a")).click();
 		driver.findElement(By.xpath("//input[@id='username']")).sendKeys("hashmap@protonmail.com");
@@ -36,7 +36,7 @@ public class Runner {
 	}
 
 	public static void searchDruftAndSend() {
-		WebDriver driver = new SeleniumDriver().firefoxDrv();
+		WebDriver driver = new SeleniumDriver().chromeDrv();
 		driver.get("https://protonmail.com");
 		driver.findElement(By.xpath("//*[@id='bs-example-navbar-collapse-1']/ul/li[7]/a")).click();
 		driver.findElement(By.xpath("//input[@id='username']")).sendKeys("hashmap@protonmail.com");
@@ -49,6 +49,7 @@ public class Runner {
 			if (wlmt.findElement(By.xpath("//*[@class = 'senders-name']")).getText().equals("test@mail.ru")
 					&& wlmt.findElement(By.xpath("//*[@class = 'subject-text ellipsis']")).getText().equals("My Subject")) {
 				wlmt.click();
+				driver.findElement(By.xpath("//button[@class='btnSendMessage-btn-action']")).click();
 			}
 		}
 	}
