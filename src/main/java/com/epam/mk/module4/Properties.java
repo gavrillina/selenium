@@ -1,5 +1,5 @@
 package com.epam.mk.module4;
 
-public class sdfsdf {
+public class Properties {
 
 }
