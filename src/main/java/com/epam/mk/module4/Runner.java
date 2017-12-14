@@ -14,7 +14,7 @@ public class Runner {
 	}
 
 	public static void createDruft() {
-		WebDriver driver = new Connector().webdrv();
+		WebDriver driver = new SeleniumDriver().firefoxDrv();
 		driver.get("https://protonmail.com");
 		driver.findElement(By.xpath("//*[@id='bs-example-navbar-collapse-1']/ul/li[7]/a")).click();
 		driver.findElement(By.xpath("//input[@id='username']")).sendKeys("hashmap@protonmail.com");
@@ -36,7 +36,7 @@ public class Runner {
 	}
 
 	public static void searchDruftAndSend() {
-		WebDriver driver = new Connector().webdrv();
+		WebDriver driver = new SeleniumDriver().firefoxDrv();
 		driver.get("https://protonmail.com");
 		driver.findElement(By.xpath("//*[@id='bs-example-navbar-collapse-1']/ul/li[7]/a")).click();
 		driver.findElement(By.xpath("//input[@id='username']")).sendKeys("hashmap@protonmail.com");
