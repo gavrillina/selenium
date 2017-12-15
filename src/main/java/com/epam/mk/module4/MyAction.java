@@ -12,17 +12,16 @@ public class MyAction {
 	public static void main(String[] args) {
 		//createDruft();
 		//searchDruftAndSend();
-		System.out.println(loginMail());
-		
+		System.out.println(loginMail("https://protonmail.com", "hashmap", "123456qw"));
 	}
 
-	public static String loginMail() {
+	public static String loginMail(String url, String username, String password) {
 		String welcomeText;
 		WebDriver driver = new SeleniumDriver().chromeDrv();
-		driver.get("https://protonmail.com");
+		driver.get(url);
 		driver.findElement(By.xpath("//*[@id='bs-example-navbar-collapse-1']/ul/li[7]/a")).click();
-		driver.findElement(By.xpath("//input[@id='username']")).sendKeys("hashmap@protonmail.com");
-		driver.findElement(By.xpath("//input[@id='password']")).sendKeys("123456qw");
+		driver.findElement(By.xpath("//input[@id='username']")).sendKeys(username);
+		driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
 		driver.findElement(By.xpath("//button[@id='login_btn']")).click();
 		welcomeText = driver.findElement(By.xpath("//div[@id='pm_latest']/header")).getText();
 		driver.close();
