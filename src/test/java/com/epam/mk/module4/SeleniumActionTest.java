@@ -27,11 +27,11 @@ public class SeleniumActionTest {
 
     @Test(dataProvider = "infoProvider", enabled=true, dependsOnMethods = {"loginMail"})
     public void createDruftAndCheck(String url, String username, String password, String sender, String subject, String body) throws InterruptedException {
-        Assert.assertEquals(SeleniumAction.createDruftAndCheck(url, username, password, sender, subject, body), true);
+        Assert.assertEquals(SeleniumAction.createDruftAndCheck(sender, subject, body), true);
     }
 
     @Test(dataProvider = "infoProvider", enabled=true, dependsOnMethods = {"createDruftAndCheck"} )
     public void sendDruftAndCheck(String url, String username, String password, String sender, String subject, String body) throws InterruptedException {
-        Assert.assertEquals(SeleniumAction.sendDruftAndCheck(url, username, password, sender, subject, body), true);
+        Assert.assertEquals(SeleniumAction.sendDruftAndCheck(sender, subject), true);
     }
 }
