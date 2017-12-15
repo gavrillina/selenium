@@ -59,13 +59,13 @@ public class SeleniumAction {
 		bodyMessage.perform();
 		Thread.sleep(2000);
 		driver.switchTo().defaultContent();
-		driver.findElement(By.xpath("//button[@ng-click='save(message, true, false)']")).click(); // save druft message
-		driver.findElement(By.xpath("//button[@ng-click='openCloseModal(message)']")).click(); // close druft message
-		driver.findElement(By.xpath("//a[@href='/drafts']")).click(); // open druft folder
+		driver.findElement(By.xpath("//button[@ng-click='save(message, true, false)']")).click();	// save druft message
+		driver.findElement(By.xpath("//button[@ng-click='openCloseModal(message)']")).click();		// close druft message
+		driver.findElement(By.xpath("//a[@href='/drafts']")).click();								// open druft folder
 		Thread.sleep(2000);
 		List<WebElement> druftList = (List<WebElement>) driver.findElements(By.xpath("//*[@ng-repeat = 'conversation in conversations track by conversation.ID']"));
 		for (WebElement wlmt : druftList) {
-			if (wlmt.findElement(By.xpath("//span[@class = 'senders-name']")).getText().equals(sender) // search email sender
+			if (wlmt.findElement(By.xpath("//span[@class = 'senders-name']")).getText().equals(sender)	// search email sender
 					&& wlmt.findElement(By.xpath("//span[@class = 'subject-text ellipsis']")).getText().equals(subject)) { // search email subject
 				wlmt.click();
 				driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class = 'squireIframe']")));
@@ -94,7 +94,8 @@ public class SeleniumAction {
 		for (WebElement wlmtsnt : sendList) {
 			if (wlmtsnt.findElement(By.xpath("//span[@class = 'senders-name']")).getText().equals(sender) // search email sender
 					&& wlmtsnt.findElement(By.xpath("//span[@class = 'subject-text ellipsis']")).getText().equals(subject)) { // search email subject
-				System.out.println("The email is in the SENT folder");
+				System.out.println("Now your email is in SENT folder");
+				driver.close();
 				return true;
 			} else {
 				driver.switchTo().defaultContent();
@@ -103,5 +104,4 @@ public class SeleniumAction {
 		}
 		return false;
 	}
-
 }
