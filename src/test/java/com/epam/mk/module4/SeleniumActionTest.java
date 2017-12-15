@@ -26,8 +26,7 @@ public class SeleniumActionTest {
 
 
     @Test(dataProvider = "loginMailProvider")
-    public void createDruftAndCheck(String url, String username, String password, String sender, String subject, String body) {
-        Assert.assertTrue(SeleniumAction.createDruftAndCheck(url, username, password, sender, subject, body), true);
-
+    public void createDruftAndCheck(String url, String username, String password, String sender, String subject, String body) throws InterruptedException {
+        Assert.assertEquals(SeleniumAction.createDruftAndCheck(url, username, password, sender, subject, body), true);
     }
 }

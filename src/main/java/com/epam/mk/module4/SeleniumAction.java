@@ -10,15 +10,19 @@ import org.openqa.selenium.interactions.Actions;
 
 public class SeleniumAction {
 
-    public static void main(String[] args) throws Exception {
-        createDruftAndCheck(
-                PropertiesLoader.getInfo("URL"),
-                PropertiesLoader.getInfo("USERNAME"),
-                PropertiesLoader.getInfo("PASSWORD"),
-                PropertiesLoader.getInfo("SENDER"),
-                PropertiesLoader.getInfo("SUBJECT"),
-                PropertiesLoader.getInfo("BODY")
-        );
+    public static void main(String[] args) {
+        try {
+			createDruftAndCheck(
+			        PropertiesLoader.getInfo("URL"),
+			        PropertiesLoader.getInfo("USERNAME"),
+			        PropertiesLoader.getInfo("PASSWORD"),
+			        PropertiesLoader.getInfo("SENDER"),
+			        PropertiesLoader.getInfo("SUBJECT"),
+			        PropertiesLoader.getInfo("BODY")
+			);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
         //   searchDruftAndSend();
     }
 
