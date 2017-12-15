@@ -42,7 +42,7 @@ public class SeleniumAction {
 		driver.findElement(By.xpath("//input[@id='password']")).sendKeys(password);
 		driver.findElement(By.xpath("//button[@id='login_btn']")).click();
 		welcomeText = driver.findElement(By.xpath("//div[@ng-if='showWelcome']/header")).getText();
-		System.out.print(welcomeText);
+		System.out.println(welcomeText);
 		return welcomeText;
 	}
 
@@ -61,6 +61,8 @@ public class SeleniumAction {
 		driver.switchTo().defaultContent();
 		driver.findElement(By.xpath("//button[@ng-click='save(message, true, false)']")).click();	// save druft message
 		driver.findElement(By.xpath("//button[@ng-click='openCloseModal(message)']")).click();		// close druft message
+		System.out.println("The druft has been created");
+
 		driver.findElement(By.xpath("//a[@href='/drafts']")).click();								// open druft folder
 		Thread.sleep(2000);
 		List<WebElement> druftList = (List<WebElement>) driver.findElements(By.xpath("//*[@ng-repeat = 'conversation in conversations track by conversation.ID']"));
