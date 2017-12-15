@@ -11,7 +11,7 @@ public class SeleniumDriver {
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		return driver;
@@ -21,7 +21,7 @@ public class SeleniumDriver {
 		System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
 		WebDriver driver = new FirefoxDriver();
 		driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		return driver;
 	}
