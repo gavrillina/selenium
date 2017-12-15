@@ -1,5 +1,8 @@
-.settings/
-target/
-.classpath
+.settings
+target
+test-output
 .project
-/bin/
+.classpath
+bin
+.idea
+testng.xml
