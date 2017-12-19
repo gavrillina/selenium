@@ -1,5 +1,6 @@
 package com.epam.mk.module4.pf;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,21 +24,25 @@ public class LoginPage extends AbstractPage {
 
 	@FindBy(xpath = "//button[@id='login_btn']")
 	WebElement enterButton;
-
+	
+	@FindBy(xpath = "//div[@ng-if='showWelcome']/header")
+	WebElement welcomeText;
+	
 	public LoginPage openUrl() {
 		driver.get(PropertiesLoader.getInfo("URL"));
 		return this;
 	}
-	
-	
-	
-	
 
-	public CreateDruftPage openPage() {
+	public String getWelcomeText() {
 		loginPageButton.click();
 		usernameInput.sendKeys(PropertiesLoader.getInfo("USERNAME"));
 		passwordInput.sendKeys(PropertiesLoader.getInfo("PASSWORD"));
 		enterButton.click();
+		return welcomeText.getText();
+	}
+
+	public CreateDruftPage openPage() {
+		getWelcomeText();
 		return new CreateDruftPage(driver);
 	}
 }
