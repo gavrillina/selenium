@@ -21,7 +21,7 @@ public class SeleniumActionTest {
 
     @Test(dataProvider = "infoProvider", enabled=true)
     public void loginMail(String url, String username, String password, String sender, String subject, String body) {
-        Assert.assertEquals(SeleniumAction.loginMail(url, username, password), "Добро пожаловать");
+        Assert.assertEquals(SeleniumAction.loginMail(url, username, password), PropertiesLoader.getInfo("WELCOME"));
     }
 
     @Test(dataProvider = "infoProvider", enabled=true, dependsOnMethods = {"loginMail"})
