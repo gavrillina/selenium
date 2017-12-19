@@ -29,9 +29,8 @@ public class LoginPage extends AbstractPage {
 		return this;
 	}
 	
-	public String welcomePage() {
-		return null;
-	}
+	
+	
 	
 
 	public CreateDruftPage openPage() {
