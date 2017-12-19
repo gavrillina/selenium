@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import com.epam.mk.module4.PropertiesLoader;
 
-public class LoginPage extends AbstractPage {
+public class LoginPage extends MyDriver {
 
 	public LoginPage(WebDriver driver) {
 		super(driver);
@@ -24,7 +24,7 @@ public class LoginPage extends AbstractPage {
 	@FindBy(xpath = "//button[@id='login_btn']")
 	WebElement enterButton;
 
-	public LoginPage open() {
+	public LoginPage openUrl() {
 		driver.get(PropertiesLoader.getInfo("URL"));
 		return this;
 	}

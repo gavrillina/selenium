@@ -11,12 +11,12 @@ import org.openqa.selenium.support.FindBy;
 
 import com.epam.mk.module4.PropertiesLoader;
 
-public class CreateDruftPage extends AbstractPage {
+public class CreateDruftPage extends MyDriver {
 
 	protected CreateDruftPage(WebDriver driver) {
 		super(driver);
 	}
-	
+
 	@FindBy(xpath = "//button[@class='compose pm_button sidebar-btn-compose']")
 	WebElement druftNewButton;
 	
@@ -59,10 +59,10 @@ public class CreateDruftPage extends AbstractPage {
 		bodyMessage.perform();
 		Thread.sleep(2000);
 		driver.switchTo().defaultContent();
-		druftSaveButton.click();										// save druft message
-		druftCloseButton.click();									// close druft message
+		druftSaveButton.click();							// save druft message
+		druftCloseButton.click();							// close druft message
 		System.out.println("The druft has been created");
-		druftPageButton.click();								// open druft folder
+		druftPageButton.click();							// open druft folder
 		Thread.sleep(2000);
 		List<WebElement> drufts = driver.findElements(druftList);
 		for (WebElement druft : drufts) {
