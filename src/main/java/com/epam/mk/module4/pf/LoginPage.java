@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import com.epam.mk.module4.PropertiesLoader;
 
-public class LoginPage extends MyDriver {
+public class LoginPage extends AbstractPage {
 
 	public LoginPage(WebDriver driver) {
 		super(driver);
@@ -28,6 +28,11 @@ public class LoginPage extends MyDriver {
 		driver.get(PropertiesLoader.getInfo("URL"));
 		return this;
 	}
+	
+	public String welcomePage() {
+		return null;
+	}
+	
 
 	public CreateDruftPage openPage() {
 		loginPageButton.click();

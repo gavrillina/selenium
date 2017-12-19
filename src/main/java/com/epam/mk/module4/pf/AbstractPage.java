@@ -4,10 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class MyDriver {
+public class AbstractPage {
     protected WebDriver driver;
 
-    protected MyDriver(WebDriver driver) {
+    protected AbstractPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }

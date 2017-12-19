@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 
 import com.epam.mk.module4.PropertiesLoader;
 
-public class CreateDruftPage extends MyDriver {
+public class CreateDruftPage extends AbstractPage {
 
 	protected CreateDruftPage(WebDriver driver) {
 		super(driver);

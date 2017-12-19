@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 
 import com.epam.mk.module4.PropertiesLoader;
 
-public class SendDruftPage extends MyDriver {
+public class SendDruftPage extends AbstractPage {
 
 	protected SendDruftPage(WebDriver driver) {
 		super(driver);

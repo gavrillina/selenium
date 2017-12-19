@@ -25,7 +25,8 @@ public class ProtonTest {
 	}
 
 	@Test(description = "Proton Mail Test")
-	public void amazonSearchTest() throws InterruptedException {
+	public void testProton() throws InterruptedException {
+	//	CreateDruftPage createMailPage = new LoginPage(driver).openUrl().openPage();
 		CreateDruftPage createMailPage = new LoginPage(driver).openUrl().openPage();
 		SendDruftPage sendMailPage = createMailPage.openPage();
 		Assert.assertEquals(sendMailPage.sendDruft(), "Now your email is in SENT folder");
