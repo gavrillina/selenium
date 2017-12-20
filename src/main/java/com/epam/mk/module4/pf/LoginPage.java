@@ -32,7 +32,7 @@ public class LoginPage extends AbstractPage {
 		return this;
 	}
 
-	public CreateDruftPage createDruftPage() {
+	public CreateDruftPage loginAction() {
 		loginPageButton.click();
 		usernameInput.sendKeys(PropertiesLoader.getInfo("USERNAME"));
 		passwordInput.sendKeys(PropertiesLoader.getInfo("PASSWORD"));

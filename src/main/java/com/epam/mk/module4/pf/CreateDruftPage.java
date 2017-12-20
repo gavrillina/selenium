@@ -55,7 +55,7 @@ public class CreateDruftPage extends AbstractPage {
 	By druftCloseButtonWait = By.xpath("//button[@ng-click='openCloseModal(message)']");	
 	
 	
-	public SendDruftPage openPage() {
+	public SendDruftPage createAction() {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		druftCreateButton.click();
 		druftSenderInput.sendKeys(PropertiesLoader.getInfo("SENDER"));

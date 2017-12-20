@@ -32,7 +32,7 @@ public class SendDruftPage extends AbstractPage {
 	By sentListSender = By.xpath("//span[@class = 'senders-name']");	
 	By sentListSubject = By.xpath("//span[@class = 'subject-text ellipsis']");	
 
-	public String sendDruft()  {
+	public String sendAction()  {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		druftSendButton.click();
 		wait.until(ExpectedConditions.visibilityOf(greenPopup));

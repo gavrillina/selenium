@@ -13,8 +13,8 @@ import org.testng.annotations.Test;
 public class ProtonTest {
 	private WebDriver driver;
 
-	CreateDruftPage createMailPage;
-	
+	CreateDruftPage createDruftPage;
+	SendDruftPage sendDruftPage;
 	
 	@BeforeClass(description = "Start browser")
 	private void initBrowser() {
@@ -28,20 +28,24 @@ public class ProtonTest {
 	}
 
 
-    @Test(enabled=true)
+    @Test()
     public void LoginPageTest()  {
-    	Assert.assertNotNull(createMailPage = new LoginPage(driver).openUrl().createDruftPage());
+    	Assert.assertNotNull(createDruftPage = new LoginPage(driver).openUrl().loginAction());
     }
 
-	@Test(description = "Proton Mail Test", dependsOnMethods = {"LoginPageTest"})
-	public void testProton() throws InterruptedException {
-		SendDruftPage sendMailPage = createMailPage.openPage();
-		Assert.assertEquals(sendMailPage.sendDruft(), "Now your email is in SENT folder");
+    @Test(dependsOnMethods = {"LoginPageTest"})
+    public void CreateDruftPageTest()  {
+    	Assert.assertNotNull(sendDruftPage = createDruftPage.createAction());
+    }
+  
+	@Test(dependsOnMethods = {"CreateDruftPageTest"})
+	public void SendDruftPageTest() throws InterruptedException {
+			Assert.assertEquals(sendDruftPage.sendAction(), "Now your email is in SENT folder");
 	}
 
 	@AfterClass(description = "Close browser")
 	public void kill() {
-	//	driver.close();
-	//	driver.quit();
+		driver.close();
+		driver.quit();
 	}
 }
