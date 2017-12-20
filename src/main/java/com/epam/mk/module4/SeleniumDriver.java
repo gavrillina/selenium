@@ -4,9 +4,6 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
-
-
 
 public class SeleniumDriver {
 
@@ -19,16 +16,6 @@ public class SeleniumDriver {
 
 		return driver;
 	}
-	
-	
-	public WebDriver chromeDrvNew() {
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-        EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
-        eventDriver.register(new ListenerThatWaitsBeforeAnyAction(5, TimeUnit.SECONDS));
-        return eventDriver;
-	}
-	
 
 	public WebDriver firefoxDrv() {
 		System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
