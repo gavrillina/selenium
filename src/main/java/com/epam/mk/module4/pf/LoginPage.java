@@ -37,6 +37,9 @@ public class LoginPage extends AbstractPage {
 		usernameInput.sendKeys(PropertiesLoader.getInfo("USERNAME"));
 		passwordInput.sendKeys(PropertiesLoader.getInfo("PASSWORD"));
 		enterButton.click();
-		return new CreateDruftPage(driver);
+		if (welcomeText.getText().equals("Добро пожаловт")) {
+			return new CreateDruftPage(driver);}
+		else 
+			return null;
 	}
 }

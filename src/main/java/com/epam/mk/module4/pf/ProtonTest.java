@@ -33,5 +33,6 @@ public class ProtonTest {
 	@AfterClass(description = "Close browser")
 	public void kill() {
 		driver.close();
+		driver.quit();
 	}
 }
