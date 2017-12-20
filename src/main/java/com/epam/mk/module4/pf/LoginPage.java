@@ -26,22 +26,17 @@ public class LoginPage extends AbstractPage {
 	
 	@FindBy(xpath = "//div[@ng-if='showWelcome']/header")
 	WebElement welcomeText;
-	
+
 	public LoginPage openUrl() {
 		driver.get(PropertiesLoader.getInfo("URL"));
 		return this;
 	}
 
-	public String getWelcomeText() {
+	public CreateDruftPage openPage() {
 		loginPageButton.click();
 		usernameInput.sendKeys(PropertiesLoader.getInfo("USERNAME"));
 		passwordInput.sendKeys(PropertiesLoader.getInfo("PASSWORD"));
 		enterButton.click();
-		return welcomeText.getText();
-	}
-
-	public CreateDruftPage openPage() {
-		getWelcomeText();
 		return new CreateDruftPage(driver);
 	}
 }
