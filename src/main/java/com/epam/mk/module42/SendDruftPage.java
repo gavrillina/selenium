@@ -1,4 +1,4 @@
-package com.epam.mk.module4.pf;
+package com.epam.mk.module42;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.epam.mk.module4.PropertiesLoader;
+import com.epam.mk.module41.PropertiesLoader;
 
 public class SendDruftPage extends AbstractPage {
 

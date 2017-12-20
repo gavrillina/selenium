@@ -1,10 +1,10 @@
-package com.epam.mk.module4.pf;
+package com.epam.mk.module42;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import com.epam.mk.module4.PropertiesLoader;
+import com.epam.mk.module41.PropertiesLoader;
 
 public class LoginPage extends AbstractPage {
 

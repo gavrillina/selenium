@@ -1,4 +1,4 @@
-package com.epam.mk.module4;
+package com.epam.mk.module41;
 
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;

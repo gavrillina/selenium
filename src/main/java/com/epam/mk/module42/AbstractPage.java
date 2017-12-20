@@ -1,4 +1,4 @@
-package com.epam.mk.module4.pf;
+package com.epam.mk.module42;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
