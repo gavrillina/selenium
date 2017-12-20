@@ -7,11 +7,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SeleniumAction {
 
 	static WebDriver driver = new SeleniumDriver().chromeDrv();
-
+	private static WebDriverWait webDriverWait = new WebDriverWait(driver, 30);
 	public static void main(String[] args) {
 		loginMail(
 				PropertiesLoader.getInfo("URL"),
@@ -52,19 +54,18 @@ public class SeleniumAction {
 		driver.findElement(By.xpath("//input[@ng-model='message.Subject']")).click();
 		Action themeMessage = new Actions(driver).sendKeys(subject).build();
 		themeMessage.perform();
-		Thread.sleep(2000);
 		driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class = 'squireIframe']")));
+		webDriverWait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("html/body/div[1]"))));
 		driver.findElement(By.xpath("html/body/div[1]")).click();
 		Action bodyMessage = new Actions(driver).sendKeys(body).build();
 		bodyMessage.perform();
-		Thread.sleep(2000);
 		driver.switchTo().defaultContent();
-		driver.findElement(By.xpath("//button[@ng-click='save(message, true, false)']")).click();	// save druft message
-		driver.findElement(By.xpath("//button[@ng-click='openCloseModal(message)']")).click();		// close druft message
-		System.out.println("The druft has been created");
 
+		driver.findElement(By.xpath("//button[@ng-click='save(message, true, false)']")).click();	// save druft message
+		//driver.findElement(By.xpath("//button[@ng-click='openCloseModal(message)']")).click();		// close druft message
+		System.out.println("The druft has been created");
 		driver.findElement(By.xpath("//a[@href='/drafts']")).click();								// open druft folder
-		Thread.sleep(2000);
+		webDriverWait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//*[@ng-repeat = 'conversation in conversations track by conversation.ID']"))));		
 		List<WebElement> druftList = (List<WebElement>) driver.findElements(By.xpath("//*[@ng-repeat = 'conversation in conversations track by conversation.ID']"));
 		for (WebElement wlmt : druftList) {
 			if (wlmt.findElement(By.xpath("//span[@class = 'senders-name']")).getText().equals(sender)	// search email sender

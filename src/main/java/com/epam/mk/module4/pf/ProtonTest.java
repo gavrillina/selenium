@@ -9,30 +9,39 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+
 public class ProtonTest {
 	private WebDriver driver;
 
+	CreateDruftPage createMailPage;
+	
+	
 	@BeforeClass(description = "Start browser")
 	private void initBrowser() {
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 	//	ChromeOptions chromeOption = new ChromeOptions();
 	//	chromeOption.setBinary("C:\\Users\\muslayev\\Desktop\\chrome\\chrome.exe");
 		driver = new ChromeDriver();
-		driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 	}
 
-	@Test(description = "Proton Mail Test")
+
+    @Test(enabled=true)
+    public void LoginPageTest()  {
+    	Assert.assertNotNull(createMailPage = new LoginPage(driver).openUrl().createDruftPage());
+    }
+
+	@Test(description = "Proton Mail Test", dependsOnMethods = {"LoginPageTest"})
 	public void testProton() throws InterruptedException {
-		CreateDruftPage createMailPage = new LoginPage(driver).openUrl().openPage();
 		SendDruftPage sendMailPage = createMailPage.openPage();
 		Assert.assertEquals(sendMailPage.sendDruft(), "Now your email is in SENT folder");
 	}
 
 	@AfterClass(description = "Close browser")
 	public void kill() {
-		driver.close();
-		driver.quit();
+	//	driver.close();
+	//	driver.quit();
 	}
 }

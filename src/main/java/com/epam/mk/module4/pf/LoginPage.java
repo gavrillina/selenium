@@ -32,14 +32,14 @@ public class LoginPage extends AbstractPage {
 		return this;
 	}
 
-	public CreateDruftPage openPage() {
+	public CreateDruftPage createDruftPage() {
 		loginPageButton.click();
 		usernameInput.sendKeys(PropertiesLoader.getInfo("USERNAME"));
 		passwordInput.sendKeys(PropertiesLoader.getInfo("PASSWORD"));
 		enterButton.click();
-		if (welcomeText.getText().equals("Добро пожаловт")) {
+		if (welcomeText.getText().equals(PropertiesLoader.getInfo("WELCOME"))) {
 			return new CreateDruftPage(driver);}
-		else 
+		else
 			return null;
 	}
 }
