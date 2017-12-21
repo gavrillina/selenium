@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreateDruftPage extends AbstractPage {
-	WebDriverWait wait = new WebDriverWait(driver, 3);
+	WebDriverWait wait = new WebDriverWait(driver, 4);
 
 	protected CreateDruftPage(WebDriver driver) {
 		super(driver);
@@ -95,8 +95,9 @@ public class CreateDruftPage extends AbstractPage {
 					return new SendDruftPage(driver);
 				} else {
 					driver.switchTo().defaultContent();
-					druftCloseButton.click();
+					druftCloseButton.click();				
 					wait.until(ExpectedConditions.invisibilityOfElementLocated(DRUFT_CLOSE_BUTTON_WAIT));
+					System.out.println("Skipped");
 				}
 			}
 		}
