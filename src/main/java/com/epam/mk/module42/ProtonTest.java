@@ -34,10 +34,10 @@ public class ProtonTest {
     @Test(dependsOnMethods = {"loginPageTest"})
     public void createDruftPageTest() {
     	Assert.assertNotNull(sendDruftPage = createDruftPage.createDruft().searchDruft());
-    //	Assert.assertNotNull(sendDruftPage = createDruftPage.searchDruft()); 	// for TEST
+    //	Assert.assertNotNull(sendDruftPage = createDruftPage.searchDruft()); 	// ЧТОБЫ ПРОПУСТИТЬ СОЗДАНИЕ ПИСЬМА И НАЧАТЬ С ПОИСКА В ЧЕРНОВИКАХ
     }
 
-	@Test(dependsOnMethods = {"createDruftPageTest"}, enabled=false)
+	@Test(dependsOnMethods = {"createDruftPageTest"})
 	public void sendDruftPageTest() throws InterruptedException {
 			Assert.assertEquals(sendDruftPage.sendAction(), "Now your email is in SENT folder");
 	}
