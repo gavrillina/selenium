@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreateDruftPage extends AbstractPage {
-	WebDriverWait wait = new WebDriverWait(driver, 5);
+	WebDriverWait wait = new WebDriverWait(driver, 3);
 
 	protected CreateDruftPage(WebDriver driver) {
 		super(driver);
@@ -43,21 +43,20 @@ public class CreateDruftPage extends AbstractPage {
 	private WebElement greenPopup;
 
 	private static final By drufts = By.xpath("//div[@ng-repeat = 'conversation in conversations track by conversation.ID']");
-	private static final By druftListSender = By.xpath("//span[@class = 'senders-name']");
-	private static final By druftListSubject = By.xpath("//span[@class = 'subject-text ellipsis']");
+//	private static final By druftListSender = By.xpath("//span[@class = 'senders-name']");
+//	private static final By druftListSubject = By.xpath("//span[@class = 'subject-text ellipsis']");
 	private static final By druftListBody = By.xpath("html/body/div[1]");
 	private static final By druftCloseButtonWait = By.xpath("//button[@ng-click='openCloseModal(message)']");
 
-	// костыль
-	private By senderKostyl(int i) {
+	private By senderKost(int i) {
 		return By.xpath("html/body/div[2]/div[1]/div/div[1]/section/div[" + i + "]/div[2]/div[2]/span/span");
 	}
 
-	private By subjectKostyl(int i) {
+	private By subjectKost(int i) {
 		return By.xpath("html/body/div[2]/div[1]/div/div[1]/section/div[" + i + "]/div[2]/div[1]/h4/span[2]");
 	}
 
-	private By openKostyl(int i) {
+	private By openKost(int i) {
 		return By.xpath("html/body/div[2]/div[1]/div/div[1]/section/div[" + i + "]");
 	}
 
@@ -80,9 +79,9 @@ public class CreateDruftPage extends AbstractPage {
 		druftPageButton.click(); // open druft folder
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(drufts)));
 		for (int i = 1; i <= driver.findElements(drufts).size(); i++) {
-			if (driver.findElement(senderKostyl(i)).getText().equals(PropertiesLoader.getInfo("SENDER"))
-					&& driver.findElement(subjectKostyl(i)).getText().equals(PropertiesLoader.getInfo("SUBJECT"))) {
-				driver.findElement(openKostyl(i)).click();
+			if (driver.findElement(senderKost(i)).getText().equals(PropertiesLoader.getInfo("SENDER"))
+					&& driver.findElement(subjectKost(i)).getText().equals(PropertiesLoader.getInfo("SUBJECT"))) {
+				driver.findElement(openKost(i)).click();
 				driver.switchTo().frame(druftFrame);
 				if (driver.findElement(druftListBody).getText().equals(PropertiesLoader.getInfo("BODY"))) {
 					System.out.println("The druft has been found");
@@ -91,7 +90,7 @@ public class CreateDruftPage extends AbstractPage {
 				} else {
 					driver.switchTo().defaultContent();
 					druftCloseButton.click();
-					//wait.until(ExpectedConditions.invisibilityOfElementLocated(druftCloseButtonWait));
+					wait.until(ExpectedConditions.invisibilityOfElementLocated(druftCloseButtonWait));
 				}
 			}
 		}

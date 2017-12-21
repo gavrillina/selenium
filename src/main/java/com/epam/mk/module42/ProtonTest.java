@@ -33,8 +33,8 @@ public class ProtonTest {
 
     @Test(dependsOnMethods = {"loginPageTest"})
     public void createDruftPageTest() {
-    //	Assert.assertNotNull(sendDruftPage = createDruftPage.createDruft().searchDruft());
-    	Assert.assertNotNull(sendDruftPage = createDruftPage.searchDruft()); 	// for TEST
+    	Assert.assertNotNull(sendDruftPage = createDruftPage.createDruft().searchDruft());
+    //	Assert.assertNotNull(sendDruftPage = createDruftPage.searchDruft()); 	// for TEST
     }
 
 	@Test(dependsOnMethods = {"createDruftPageTest"}, enabled=false)
@@ -44,6 +44,6 @@ public class ProtonTest {
 
 	@AfterTest
 	public void closeDriver() {
-//		driver.quit();
+		driver.quit();
 	}
 }
