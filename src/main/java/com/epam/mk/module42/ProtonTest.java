@@ -5,19 +5,18 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
 public class ProtonTest {
 	private WebDriver driver;
-
 	CreateDruftPage createDruftPage;
 	SendDruftPage sendDruftPage;
-	
-	@BeforeClass(description = "Start browser")
-	private void initBrowser() {
+
+	@BeforeClass
+	private void initDriver() {
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 	//	ChromeOptions chromeOption = new ChromeOptions();
 	//	chromeOption.setBinary("C:\\Users\\muslayev\\Desktop\\chrome\\chrome.exe");
@@ -27,25 +26,23 @@ public class ProtonTest {
 		driver.manage().window().maximize();
 	}
 
-
     @Test()
-    public void LoginPageTest()  {
+    public void loginPageTest()  {
     	Assert.assertNotNull(createDruftPage = new LoginPage(driver).openUrl().loginAction());
     }
 
-    @Test(dependsOnMethods = {"LoginPageTest"})
-    public void CreateDruftPageTest()  {
-    	Assert.assertNotNull(sendDruftPage = createDruftPage.createAction());
+    @Test(dependsOnMethods = {"loginPageTest"})
+    public void createDruftPageTest() throws InterruptedException  {
+    	Assert.assertNotNull(sendDruftPage = createDruftPage.createDruft().searchDruft());
     }
-  
-	@Test(dependsOnMethods = {"CreateDruftPageTest"})
-	public void SendDruftPageTest() throws InterruptedException {
+
+	@Test(dependsOnMethods = {"createDruftPageTest"})
+	public void sendDruftPageTest() throws InterruptedException {
 			Assert.assertEquals(sendDruftPage.sendAction(), "Now your email is in SENT folder");
 	}
 
-	@AfterClass(description = "Close browser")
-	public void kill() {
-		driver.close();
-		driver.quit();
+	@AfterTest
+	public void closeDriver() {
+//		driver.quit();
 	}
 }

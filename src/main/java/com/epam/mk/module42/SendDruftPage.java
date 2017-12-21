@@ -19,13 +19,13 @@ public class SendDruftPage extends AbstractPage {
 
 	@FindBy(xpath = "//button[@class='pm_button primary mobileFull composer-btn-send btnSendMessage-btn-action']")
 	WebElement druftSendButton;
-	
+
 	@FindBy(xpath = "//a[@href='/sent']")
 	WebElement sentPageButton;
-	
+
 	@FindBy(xpath = "//a[@href='/sent']")
 	WebElement sentCloseButton;
-	
+
 	@FindBy(xpath = "//span[@ng-bind-html='$message']")
 	WebElement greenPopup;
 	By sentList = By.xpath("//*[@ng-repeat = 'conversation in conversations track by conversation.ID']");
