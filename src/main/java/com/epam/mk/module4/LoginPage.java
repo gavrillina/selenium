@@ -11,19 +11,19 @@ public class LoginPage extends AbstractPage {
 	}
 
 	@FindBy(xpath = "//div[@id='bs-example-navbar-collapse-1']/ul/li[7]/a")
-	WebElement loginPageButton;
+	private WebElement loginPageButton;
 
 	@FindBy(xpath = "//input[@id='username']")
-	WebElement usernameInput;
+	private WebElement usernameInput;
 
 	@FindBy(xpath = "//input[@id='password']")
-	WebElement passwordInput;
+	private WebElement passwordInput;
 
 	@FindBy(xpath = "//button[@id='login_btn']")
-	WebElement enterButton;
+	private WebElement enterButton;
 	
 	@FindBy(xpath = "//div[@ng-if='showWelcome']/header")
-	WebElement welcomeText;
+	private WebElement welcomeText;
 
 	public LoginPage openUrl() {
 		driver.get(PropertiesLoader.getInfo("URL"));

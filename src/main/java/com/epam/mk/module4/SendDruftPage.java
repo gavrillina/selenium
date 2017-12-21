@@ -16,19 +16,19 @@ public class SendDruftPage extends AbstractPage {
 	}
 
 	@FindBy(xpath = "//button[@class='pm_button primary mobileFull composer-btn-send btnSendMessage-btn-action']")
-	WebElement druftSendButton;
+	private WebElement druftSendButton;
 
 	@FindBy(xpath = "//a[@href='/sent']")
-	WebElement sentPageButton;
+	private WebElement sentPageButton;
 
 	@FindBy(xpath = "//a[@href='/sent']")
-	WebElement sentCloseButton;
+	private WebElement sentCloseButton;
 
 	@FindBy(xpath = "//span[@ng-bind-html='$message']")
-	WebElement greenPopup;
-	By sentList = By.xpath("//*[@ng-repeat = 'conversation in conversations track by conversation.ID']");
-	By sentListSender = By.xpath("//span[@class = 'senders-name']");	
-	By sentListSubject = By.xpath("//span[@class = 'subject-text ellipsis']");	
+	private WebElement greenPopup;
+	private final By sentList = By.xpath("//*[@ng-repeat = 'conversation in conversations track by conversation.ID']");
+	private final By sentListSender = By.xpath("//span[@class = 'senders-name']");	
+	private final By sentListSubject = By.xpath("//span[@class = 'subject-text ellipsis']");	
 
 	public String sendAction()  {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
