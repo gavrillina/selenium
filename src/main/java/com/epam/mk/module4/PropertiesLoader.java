@@ -1,4 +1,4 @@
-package com.epam.mk.module42;
+package com.epam.mk.module4;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;

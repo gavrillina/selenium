@@ -1,4 +1,4 @@
-package com.epam.mk.module42;
+package com.epam.mk.module4;
 
 import java.util.concurrent.TimeUnit;
 
