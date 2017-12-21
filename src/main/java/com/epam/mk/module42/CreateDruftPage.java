@@ -73,7 +73,8 @@ public class CreateDruftPage extends AbstractPage {
 		wait.until(ExpectedConditions.visibilityOf(driver.findElement(drufts)));										// ЖДАТЬ ПОКА ПОДГРУЗЯТСЯ ЧЕРНОВИКИ
 		List<WebElement> druftList = driver.findElements(drufts);
 		for (WebElement druft : druftList) {
-			System.out.println(druft.findElement(druftListSender).getText());
+			System.out.println(druft.findElement(druftListSender).hashCode());
+		//	System.out.println(druft.findElement(druftListSubject).getText());
 			if (druft.findElement(druftListSender).getText().equals(PropertiesLoader.getInfo("SENDER")) 				// search email sender
 					&& druft.findElement(druftListSubject).getText().equals(PropertiesLoader.getInfo("SUBJECT"))) {		// search email subject
 				druft.click();
