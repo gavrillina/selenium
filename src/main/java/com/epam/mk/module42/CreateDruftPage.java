@@ -43,13 +43,16 @@ public class CreateDruftPage extends AbstractPage {
 	@FindBy(xpath = "//span[@ng-bind-html='$message']")
 	WebElement greenPopup;
 
-	By druftList = By.xpath("//div[@ng-repeat = 'conversation in conversations track by conversation.ID']");
+	//@FindBy(xpath = "//div[@ng-repeat = 'conversation in conversations track by conversation.ID']")
+	//List<WebElement> testList;
+
+	By drufts = By.xpath("//div[@ng-repeat = 'conversation in conversations track by conversation.ID']");
 	By druftListSender = By.xpath("//span[@class = 'senders-name']");
 	By druftListSubject = By.xpath("//span[@class = 'subject-text ellipsis']");
 	By druftListBody = By.xpath("html/body/div[1]");
 	By druftCloseButtonWait = By.xpath("//button[@ng-click='openCloseModal(message)']");
 
-	
+
 	public CreateDruftPage createDruft() {
 		druftCreateButton.click();
 		new Actions(driver).sendKeys(druftSubjectInput, PropertiesLoader.getInfo("SUBJECT")).build().perform();
@@ -67,22 +70,23 @@ public class CreateDruftPage extends AbstractPage {
 
 	public SendDruftPage searchDruft() {
 		druftPageButton.click();																						// open druft folder
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(druftList)));										// ЖДАТЬ ПОКА ПОДГРУЗЯТСЯ ЧЕРНОВИКИ
-		List<WebElement> drufts = driver.findElements(druftList);
-		for (WebElement druft : drufts) {
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(drufts)));										// ЖДАТЬ ПОКА ПОДГРУЗЯТСЯ ЧЕРНОВИКИ
+		List<WebElement> druftList = driver.findElements(drufts);
+		for (WebElement druft : druftList) {
+			System.out.println(druft.findElement(druftListSender).getText());
 			if (druft.findElement(druftListSender).getText().equals(PropertiesLoader.getInfo("SENDER")) 				// search email sender
 					&& druft.findElement(druftListSubject).getText().equals(PropertiesLoader.getInfo("SUBJECT"))) {		// search email subject
 				druft.click();
-				driver.switchTo().frame(druftFrame);
-				if (driver.findElement(druftListBody).getText().equals(PropertiesLoader.getInfo("BODY"))) {				// search email body
-					System.out.println("The druft has been found");
-					driver.switchTo().defaultContent();
-					return new SendDruftPage(driver);
-				} else {
-					driver.switchTo().defaultContent();
-					druftCloseButton.click();
-					wait.until(ExpectedConditions.invisibilityOfElementLocated(druftCloseButtonWait));
-				}
+//				driver.switchTo().frame(druftFrame);
+//				if (driver.findElement(druftListBody).getText().equals(PropertiesLoader.getInfo("BODY"))) {				// search email body
+//					System.out.println("The druft has been found");
+//					driver.switchTo().defaultContent();
+//					return new SendDruftPage(driver);
+//				} else {
+//					driver.switchTo().defaultContent();
+//					druftCloseButton.click();
+//					wait.until(ExpectedConditions.invisibilityOfElementLocated(druftCloseButtonWait));
+//				}
 			}
 		}
 		System.out.println("The druft has not been found");
