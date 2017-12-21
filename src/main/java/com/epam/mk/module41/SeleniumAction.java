@@ -10,6 +10,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.epam.mk.module42.PropertiesLoader;
+
 public class SeleniumAction {
 
 	static WebDriver driver = new SeleniumDriver().chromeDrv();

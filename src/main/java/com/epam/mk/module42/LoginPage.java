@@ -4,8 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import com.epam.mk.module41.PropertiesLoader;
-
 public class LoginPage extends AbstractPage {
 
 	public LoginPage(WebDriver driver) {

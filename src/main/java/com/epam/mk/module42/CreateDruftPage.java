@@ -10,8 +10,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.epam.mk.module41.PropertiesLoader;
-
 public class CreateDruftPage extends AbstractPage {
 	WebDriverWait wait = new WebDriverWait(driver, 5);
 	protected CreateDruftPage(WebDriver driver) {
@@ -59,24 +57,24 @@ public class CreateDruftPage extends AbstractPage {
 		driver.switchTo().frame(druftFrame);
 		new Actions(driver).sendKeys(druftBodyInput, PropertiesLoader.getInfo("BODY")).build().perform();
 		driver.switchTo().defaultContent();
-		druftSaveButton.click(); // save druft message
+		druftSaveButton.click();																						// save druft message
 		wait.until(ExpectedConditions.visibilityOf(greenPopup));
-		druftCloseButton.click(); // close druft message
+		druftCloseButton.click();																						// close druft message
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(druftCloseButtonWait));
 		System.out.println("The druft has been created");
 		return this;
 	}
 
 	public SendDruftPage searchDruft() {
-		druftPageButton.click(); // open druft folder
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(druftList))); // ЖДАТЬ ПОКА ПОДГРУЗЯТСЯ ЧЕРНОВИКИ
+		druftPageButton.click();																						// open druft folder
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(druftList)));										// ЖДАТЬ ПОКА ПОДГРУЗЯТСЯ ЧЕРНОВИКИ
 		List<WebElement> drufts = driver.findElements(druftList);
 		for (WebElement druft : drufts) {
-			if (druft.findElement(druftListSender).getText().equals(PropertiesLoader.getInfo("SENDER")) // search email sender
-					&& druft.findElement(druftListSubject).getText().equals(PropertiesLoader.getInfo("SUBJECT"))) { // search email subject
+			if (druft.findElement(druftListSender).getText().equals(PropertiesLoader.getInfo("SENDER")) 				// search email sender
+					&& druft.findElement(druftListSubject).getText().equals(PropertiesLoader.getInfo("SUBJECT"))) {		// search email subject
 				druft.click();
 				driver.switchTo().frame(druftFrame);
-				if (driver.findElement(druftListBody).getText().equals(PropertiesLoader.getInfo("BODY"))) { // search email body
+				if (driver.findElement(druftListBody).getText().equals(PropertiesLoader.getInfo("BODY"))) {				// search email body
 					System.out.println("The druft has been found");
 					driver.switchTo().defaultContent();
 					return new SendDruftPage(driver);

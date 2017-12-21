@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.epam.mk.module42.PropertiesLoader;
+
 public class SeleniumActionTest {
 
     @DataProvider
