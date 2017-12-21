@@ -32,7 +32,7 @@ public class ProtonTest {
     }
 
     @Test(dependsOnMethods = {"loginPageTest"})
-    public void createDruftPageTest() throws InterruptedException  {
+    public void createDruftPageTest() {
     //	Assert.assertNotNull(sendDruftPage = createDruftPage.createDruft().searchDruft());
     	Assert.assertNotNull(sendDruftPage = createDruftPage.searchDruft()); 	// for TEST
     }
