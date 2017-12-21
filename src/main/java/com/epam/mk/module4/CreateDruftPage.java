@@ -42,11 +42,11 @@ public class CreateDruftPage extends AbstractPage {
 	@FindBy(xpath = "//span[@ng-bind-html='$message']")
 	private WebElement greenPopup;
 
-	private static final By drufts = By.xpath("//div[@ng-repeat = 'conversation in conversations track by conversation.ID']");
+	private static final By DRUFTS = By.xpath("//div[@ng-repeat = 'conversation in conversations track by conversation.ID']");
 //	private static final By druftListSender = By.xpath("//span[@class = 'senders-name']");
 //	private static final By druftListSubject = By.xpath("//span[@class = 'subject-text ellipsis']");
-	private static final By druftListBody = By.xpath("html/body/div[1]");
-	private static final By druftCloseButtonWait = By.xpath("//button[@ng-click='openCloseModal(message)']");
+	private static final By DRUFT_BODY = By.xpath("html/body/div[1]");
+	private static final By DRUFT_CLOSE_BUTTON_WAIT = By.xpath("//button[@ng-click='openCloseModal(message)']");
 
 	private By senderKost(int i) {
 		return By.xpath("html/body/div[2]/div[1]/div/div[1]/section/div[" + i + "]/div[2]/div[2]/span/span");
@@ -70,27 +70,27 @@ public class CreateDruftPage extends AbstractPage {
 		druftSaveButton.click(); // save druft message
 		wait.until(ExpectedConditions.visibilityOf(greenPopup));
 		druftCloseButton.click(); // close druft message
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(druftCloseButtonWait));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(DRUFT_CLOSE_BUTTON_WAIT));
 		System.out.println("The druft has been created");
 		return this;
 	}
 
 	public SendDruftPage searchDruft() {
 		druftPageButton.click(); // open druft folder
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(drufts)));
-		for (int i = 1; i <= driver.findElements(drufts).size(); i++) {
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(DRUFTS)));
+		for (int i = 1; i <= driver.findElements(DRUFTS).size(); i++) {
 			if (driver.findElement(senderKost(i)).getText().equals(PropertiesLoader.getInfo("SENDER"))
 					&& driver.findElement(subjectKost(i)).getText().equals(PropertiesLoader.getInfo("SUBJECT"))) {
 				driver.findElement(openKost(i)).click();
 				driver.switchTo().frame(druftFrame);
-				if (driver.findElement(druftListBody).getText().equals(PropertiesLoader.getInfo("BODY"))) {
+				if (driver.findElement(DRUFT_BODY).getText().equals(PropertiesLoader.getInfo("BODY"))) {
 					System.out.println("The druft has been found");
 					driver.switchTo().defaultContent();
 					return new SendDruftPage(driver);
 				} else {
 					driver.switchTo().defaultContent();
 					druftCloseButton.click();
-					wait.until(ExpectedConditions.invisibilityOfElementLocated(druftCloseButtonWait));
+					wait.until(ExpectedConditions.invisibilityOfElementLocated(DRUFT_CLOSE_BUTTON_WAIT));
 				}
 			}
 		}

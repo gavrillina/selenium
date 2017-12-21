@@ -26,9 +26,9 @@ public class SendDruftPage extends AbstractPage {
 
 	@FindBy(xpath = "//span[@ng-bind-html='$message']")
 	private WebElement greenPopup;
-	private final By sentList = By.xpath("//*[@ng-repeat = 'conversation in conversations track by conversation.ID']");
-	private final By sentListSender = By.xpath("//span[@class = 'senders-name']");	
-	private final By sentListSubject = By.xpath("//span[@class = 'subject-text ellipsis']");	
+	private final By SENTS = By.xpath("//*[@ng-repeat = 'conversation in conversations track by conversation.ID']");
+	private final By SENT_SENDER = By.xpath("//span[@class = 'senders-name']");	
+	private final By SENT_SUBJECT = By.xpath("//span[@class = 'subject-text ellipsis']");	
 
 	public String sendAction()  {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
@@ -37,11 +37,11 @@ public class SendDruftPage extends AbstractPage {
 		System.out.println("The druft has been sent");
 		// поиск в отправленных:
 		sentPageButton.click();
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(sentList)));
-		List<WebElement> sents = (List<WebElement>) driver.findElements(sentList);
-		for (WebElement sent : sents) {
-			if (sent.findElement(sentListSender).getText().equals(PropertiesLoader.getInfo("SENDER")) // search email sender
-					&& sent.findElement(sentListSubject).getText().equals(PropertiesLoader.getInfo("SUBJECT"))) { // search email subject
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(SENTS)));
+		List<WebElement> sentList = (List<WebElement>) driver.findElements(SENTS);
+		for (WebElement sent : sentList) {
+			if (sent.findElement(SENT_SENDER).getText().equals(PropertiesLoader.getInfo("SENDER")) // search email sender
+					&& sent.findElement(SENT_SUBJECT).getText().equals(PropertiesLoader.getInfo("SUBJECT"))) { // search email subject
 				sent.click();
 				return "Now your email is in SENT folder";
 			} else {
