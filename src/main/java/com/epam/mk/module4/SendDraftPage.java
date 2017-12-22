@@ -53,7 +53,7 @@ public class SendDraftPage extends AbstractPage {
 				sentCloseButton.click();
 			}
 		}
-		throw new ProtonException("The sent has not been found");	
+		throw new ProtonException("The sent has not been found");
 	}
 
 //	private final By SENTS = By.xpath("//*[@ng-repeat = 'conversation in conversations track by conversation.ID']");
