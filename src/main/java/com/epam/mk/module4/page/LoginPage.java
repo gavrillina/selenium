@@ -1,11 +1,11 @@
-package com.epam.mk.module4.pagefactory;
+package com.epam.mk.module4.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import com.epam.mk.module4.PropertiesLoader;
-import com.epam.mk.module4.ProtonException;
+import com.epam.mk.module4.exception.CannotLoginException;
 
 public class LoginPage extends AbstractPage {
 
@@ -33,14 +33,14 @@ public class LoginPage extends AbstractPage {
 		return this;
 	}
 
-	public CreateDraftPage loginAction() throws ProtonException {
+	public CreateDraftPage loginAction() throws CannotLoginException {
 		loginPageButton.click();
 		usernameInput.sendKeys(PropertiesLoader.getInfo("USERNAME"));
 		passwordInput.sendKeys(PropertiesLoader.getInfo("PASSWORD"));
 		enterButton.click();
-		if (welcomeText.getText().equals(PropertiesLoader.getInfo("WELCOME"))) {
+		if (welcomeText.isDisplayed()) {
 			return new CreateDraftPage(driver);
 		} else
-			throw new ProtonException("Login failed");
+			throw new CannotLoginException("Login failed");
 	}
 }

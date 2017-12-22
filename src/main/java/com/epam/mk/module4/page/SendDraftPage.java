@@ -1,4 +1,4 @@
-package com.epam.mk.module4.pagefactory;
+package com.epam.mk.module4.page;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.epam.mk.module4.ProtonException;
 import com.epam.mk.module4.entity.Mail;
+import com.epam.mk.module4.exception.DraftNotFoundException;
 
 public class SendDraftPage extends AbstractPage {
 
@@ -28,7 +28,7 @@ public class SendDraftPage extends AbstractPage {
 
 	@FindBy(xpath = "//span[@ng-bind-html='$message']")
 	private WebElement greenPopup;
-	
+
 	@FindBy(xpath = "//*[@ng-repeat = 'conversation in conversations track by conversation.ID']")
 	private List<WebElement>sentList;
 
@@ -38,7 +38,7 @@ public class SendDraftPage extends AbstractPage {
 	@FindBy(xpath = "//span[@class = 'subject-text ellipsis']")
 	private WebElement sentSubjectSpan;
 
-	public String sendAction(Mail mail) throws ProtonException {
+	public String sendAction(Mail mail) throws DraftNotFoundException {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		draftSendButton.click();
 		wait.until(ExpectedConditions.visibilityOf(greenPopup));
@@ -56,7 +56,7 @@ public class SendDraftPage extends AbstractPage {
 				sentCloseButton.click();
 			}
 		}
-		throw new ProtonException("The sent has not been found");
+		throw new DraftNotFoundException("The sent has not been found");
 	}
 
 //	private final By SENTS = By.xpath("//*[@ng-repeat = 'conversation in conversations track by conversation.ID']");

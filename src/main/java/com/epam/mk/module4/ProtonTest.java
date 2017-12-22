@@ -11,9 +11,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.epam.mk.module4.entity.Mail;
-import com.epam.mk.module4.pagefactory.CreateDraftPage;
-import com.epam.mk.module4.pagefactory.LoginPage;
-import com.epam.mk.module4.pagefactory.SendDraftPage;
+import com.epam.mk.module4.exception.CannotLoginException;
+import com.epam.mk.module4.exception.DraftNotFoundException;
+import com.epam.mk.module4.page.CreateDraftPage;
+import com.epam.mk.module4.page.LoginPage;
+import com.epam.mk.module4.page.SendDraftPage;
 
 public class ProtonTest {
 	private WebDriver driver;
@@ -37,18 +39,18 @@ public class ProtonTest {
 	}
 
 	@Test
-	public void loginPageTest() throws ProtonException {
+	public void loginPageTest() throws CannotLoginException {
 		createDraftPage = new LoginPage(driver).openUrl().loginAction();
 	}
 
 	@Test(dependsOnMethods = { "loginPageTest" }, dataProvider = "myDetails")
-	public void createDraftPageTest(Mail mail) throws ProtonException {
+	public void createDraftPageTest(Mail mail) throws DraftNotFoundException {
 		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 		sendDraftPage = createDraftPage.createDraft(mail).searchDraft(mail);
 	}
 
 	@Test(dependsOnMethods = { "createDraftPageTest" }, dataProvider = "myDetails", enabled = true)
-	public void sendDraftPageTest(Mail mail) throws ProtonException {
+	public void sendDraftPageTest(Mail mail) throws DraftNotFoundException {
 		Assert.assertEquals(sendDraftPage.sendAction(mail), "Now your email is in SENT folder");
 	}
 

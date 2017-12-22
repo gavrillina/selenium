@@ -1,4 +1,4 @@
-package com.epam.mk.module4.pagefactory;
+package com.epam.mk.module4.page;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.epam.mk.module4.ProtonException;
 import com.epam.mk.module4.entity.Mail;
+import com.epam.mk.module4.exception.DraftNotFoundException;
 
 public class CreateDraftPage extends AbstractPage {
 	WebDriverWait wait = new WebDriverWait(driver, 4);
@@ -79,7 +79,7 @@ public class CreateDraftPage extends AbstractPage {
 		return this;
 	}
 
-	public SendDraftPage searchDraft(Mail mail) throws ProtonException {
+	public SendDraftPage searchDraft(Mail mail) throws DraftNotFoundException {
 		draftPageButton.click(); // open draft folder
 		wait.until(ExpectedConditions.visibilityOf(draftList.get(0)));
 		for (int i = 1; i <= draftList.size(); i++) {
@@ -99,7 +99,7 @@ public class CreateDraftPage extends AbstractPage {
 				}
 			}
 		}
-		throw new ProtonException("The draft has not been found");
+		throw new DraftNotFoundException("The draft has not been found");
 	}
 
 //	private static final By druftListSender = By.xpath("//span[@class = 'senders-name']");
