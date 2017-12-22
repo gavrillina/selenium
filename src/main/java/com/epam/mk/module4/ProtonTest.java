@@ -32,7 +32,7 @@ public class ProtonTest {
 
 	@Test(dependsOnMethods = { "loginPageTest" })
 	public void createDruftPageTest() {
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
 		Assert.assertNotNull(sendDruftPage = createDruftPage.createDruft().searchDruft());
 		// Assert.assertNotNull(sendDruftPage = createDruftPage.searchDruft()); // ЧТОБЫ ПРОПУСТИТЬ СОЗДАНИЕ ПИСЬМА И НАЧАТЬ С ПОИСКА В ЧЕРНОВИКАХ
 	}
