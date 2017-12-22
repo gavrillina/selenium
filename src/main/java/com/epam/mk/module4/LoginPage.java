@@ -21,7 +21,7 @@ public class LoginPage extends AbstractPage {
 
 	@FindBy(xpath = "//button[@id='login_btn']")
 	private WebElement enterButton;
-	
+
 	@FindBy(xpath = "//div[@ng-if='showWelcome']/header")
 	private WebElement welcomeText;
 
@@ -36,8 +36,8 @@ public class LoginPage extends AbstractPage {
 		passwordInput.sendKeys(PropertiesLoader.getInfo("PASSWORD"));
 		enterButton.click();
 		if (welcomeText.getText().equals(PropertiesLoader.getInfo("WELCOME"))) {
-			return new CreateDruftPage(driver);}
-		else
+			return new CreateDruftPage(driver);
+		} else
 			return null;
 	}
 }
