@@ -14,7 +14,7 @@ public class LoginPage extends AbstractPage {
 	}
 
 	@FindBy(xpath = "//div[@id='bs-example-navbar-collapse-1']/ul/li[7]/a")
-	private WebElement loginPageButton;
+	private WebElement loginUrlButton;
 
 	@FindBy(xpath = "//input[@id='username']")
 	private WebElement usernameInput;
@@ -23,10 +23,10 @@ public class LoginPage extends AbstractPage {
 	private WebElement passwordInput;
 
 	@FindBy(xpath = "//button[@id='login_btn']")
-	private WebElement enterButton;
+	private WebElement loginButton;
 
 	@FindBy(xpath = "//div[@ng-if='showWelcome']/header")
-	private WebElement welcomeText;
+	private WebElement welcomeMessage;
 
 	public LoginPage openUrl() {
 		driver.get(PropertiesLoader.getInfo("URL"));
@@ -34,11 +34,11 @@ public class LoginPage extends AbstractPage {
 	}
 
 	public CreateDraftPage loginAction() throws CannotLoginException {
-		loginPageButton.click();
+		loginUrlButton.click();
 		usernameInput.sendKeys(PropertiesLoader.getInfo("USERNAME"));
 		passwordInput.sendKeys(PropertiesLoader.getInfo("PASSWORD"));
-		enterButton.click();
-		if (welcomeText.isDisplayed()) {
+		loginButton.click();
+		if (welcomeMessage.isDisplayed()) {
 			return new CreateDraftPage(driver);
 		} else
 			throw new CannotLoginException("Login failed");

@@ -33,7 +33,7 @@ public class CreateDraftPage extends AbstractPage {
 	private WebElement draftFrame;
 
 	@FindBy(xpath = "html/body/div[1]")
-	private WebElement draftBodyInput;
+	private WebElement draftFrameBodyInput;
 
 	@FindBy(xpath = "//button[@ng-click='save(message, true, false)']")
 	private WebElement draftSaveButton;
@@ -42,10 +42,10 @@ public class CreateDraftPage extends AbstractPage {
 	private WebElement draftCloseButton;
 
 	@FindBy(xpath = "//a[@href='/drafts']")
-	private WebElement draftPageButton;
+	private WebElement draftsUrl;
 
 	@FindBy(xpath = "//span[@ng-bind-html='$message']")
-	private WebElement greenPopup;
+	private WebElement greenMessage;
 
 	@FindBy(xpath = "//div[@ng-repeat = 'conversation in conversations track by conversation.ID']")
 	private List<WebElement>draftList;
@@ -69,10 +69,10 @@ public class CreateDraftPage extends AbstractPage {
 		draftSubjectInput.sendKeys(mail.getSubject());
 		draftSenderInput.sendKeys(mail.getSender());
 		driver.switchTo().frame(draftFrame);
-		new Actions(driver).sendKeys(draftBodyInput, mail.getBody()).build().perform();
+		new Actions(driver).sendKeys(draftFrameBodyInput, mail.getBody()).build().perform();
 		driver.switchTo().defaultContent();
 		draftSaveButton.click(); // save draft message
-		wait.until(ExpectedConditions.visibilityOf(greenPopup));
+		wait.until(ExpectedConditions.visibilityOf(greenMessage));
 		draftCloseButton.click(); // close draft message
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(DRAFT_CLOSE_BUTTON_WAIT));
 		//System.out.println("The draft has been created");
@@ -80,14 +80,14 @@ public class CreateDraftPage extends AbstractPage {
 	}
 
 	public SendDraftPage searchDraft(Mail mail) throws DraftNotFoundException {
-		draftPageButton.click(); // open draft folder
+		draftsUrl.click(); // open draft folder
 		wait.until(ExpectedConditions.visibilityOf(draftList.get(0)));
 		for (int i = 1; i <= draftList.size(); i++) {
 			if (driver.findElement(senderKost(i)).getText().equals(mail.getSender())
 					&& driver.findElement(subjectKost(i)).getText().equals(mail.getSubject())) {
 				driver.findElement(openKost(i)).click();
 				driver.switchTo().frame(draftFrame);
-				if (draftBodyInput.getText().equals(mail.getBody())) {
+				if (draftFrameBodyInput.getText().equals(mail.getBody())) {
 					//System.out.println("The draft has been found");
 					driver.switchTo().defaultContent();
 					return new SendDraftPage(driver);

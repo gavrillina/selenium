@@ -21,13 +21,10 @@ public class SendDraftPage extends AbstractPage {
 	private WebElement draftSendButton;
 
 	@FindBy(xpath = "//a[@href='/sent']")
-	private WebElement sentPageButton;
-
-	@FindBy(xpath = "//a[@href='/sent']")
-	private WebElement sentCloseButton;
+	private WebElement sentsUrl;
 
 	@FindBy(xpath = "//span[@ng-bind-html='$message']")
-	private WebElement greenPopup;
+	private WebElement greenMessage;
 
 	@FindBy(xpath = "//*[@ng-repeat = 'conversation in conversations track by conversation.ID']")
 	private List<WebElement>sentList;
@@ -41,10 +38,10 @@ public class SendDraftPage extends AbstractPage {
 	public String sendAction(Mail mail) throws DraftNotFoundException {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		draftSendButton.click();
-		wait.until(ExpectedConditions.visibilityOf(greenPopup));
+		wait.until(ExpectedConditions.visibilityOf(greenMessage));
 		//System.out.println("The draft has been sent");
 		// поиск в отправленных:
-		sentPageButton.click();
+		sentsUrl.click();
 		wait.until(ExpectedConditions.visibilityOf(sentList.get(0)));
 		for (WebElement sent : sentList) {
 			if (sentSenderSpan.getText().equals(mail.getSender()) // search email sender
@@ -53,7 +50,6 @@ public class SendDraftPage extends AbstractPage {
 				return "Now your email is in SENT folder";
 			} else {
 				driver.switchTo().defaultContent();
-				sentCloseButton.click();
 			}
 		}
 		throw new DraftNotFoundException("The sent has not been found");
