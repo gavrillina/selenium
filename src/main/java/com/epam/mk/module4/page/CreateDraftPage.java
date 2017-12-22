@@ -7,14 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.epam.mk.module4.entity.Mail;
 import com.epam.mk.module4.exception.DraftNotFoundException;
 
 public class CreateDraftPage extends AbstractPage {
-	WebDriverWait wait = new WebDriverWait(driver, 4);
 
 	protected CreateDraftPage(WebDriver driver) {
 		super(driver);
@@ -72,16 +69,16 @@ public class CreateDraftPage extends AbstractPage {
 		new Actions(driver).sendKeys(draftFrameBodyInput, mail.getBody()).build().perform();
 		driver.switchTo().defaultContent();
 		draftSaveButton.click(); // save draft message
-		wait.until(ExpectedConditions.visibilityOf(greenMessage));
+		waitElementVisible(greenMessage);
 		draftCloseButton.click(); // close draft message
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(DRAFT_CLOSE_BUTTON_WAIT));
+		waitLocatorInvisible(DRAFT_CLOSE_BUTTON_WAIT);
 		//System.out.println("The draft has been created");
 		return this;
 	}
 
 	public SendDraftPage searchDraft(Mail mail) throws DraftNotFoundException {
 		draftsUrl.click(); // open draft folder
-		wait.until(ExpectedConditions.visibilityOf(draftList.get(0)));
+		waitElementVisible(draftList.get(0));
 		for (int i = 1; i <= draftList.size(); i++) {
 			if (driver.findElement(senderKost(i)).getText().equals(mail.getSender())
 					&& driver.findElement(subjectKost(i)).getText().equals(mail.getSubject())) {
@@ -94,7 +91,7 @@ public class CreateDraftPage extends AbstractPage {
 				} else {
 					driver.switchTo().defaultContent();
 					draftCloseButton.click();				
-					wait.until(ExpectedConditions.invisibilityOfElementLocated(DRAFT_CLOSE_BUTTON_WAIT));
+					waitLocatorInvisible(DRAFT_CLOSE_BUTTON_WAIT);
 					//System.out.println("The draft is skipped");
 				}
 			}

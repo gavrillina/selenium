@@ -46,7 +46,7 @@ public class ProtonTest {
 
 	@Test(dependsOnMethods = { "createDraftPageTest" }, dataProvider = "myDetails", enabled = true)
 	public void sendDraftPageTest(Mail mail) throws DraftNotFoundException {
-		Assert.assertEquals(sendDraftPage.sendAction(mail), "Now your email is in SENT folder");
+		Assert.assertEquals(sendDraftPage.sendDraft(mail), "Now your email is in SENT folder");
 	}
 
 	@AfterTest(enabled = true)

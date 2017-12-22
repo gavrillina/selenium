@@ -5,8 +5,6 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.epam.mk.module4.entity.Mail;
 import com.epam.mk.module4.exception.DraftNotFoundException;
@@ -35,14 +33,13 @@ public class SendDraftPage extends AbstractPage {
 	@FindBy(xpath = "//span[@class = 'subject-text ellipsis']")
 	private WebElement sentSubjectSpan;
 
-	public String sendAction(Mail mail) throws DraftNotFoundException {
-		WebDriverWait wait = new WebDriverWait(driver, 5);
+	public String sendDraft(Mail mail) throws DraftNotFoundException {
 		draftSendButton.click();
-		wait.until(ExpectedConditions.visibilityOf(greenMessage));
+		waitElementVisible(greenMessage);
 		//System.out.println("The draft has been sent");
 		// поиск в отправленных:
 		sentsUrl.click();
-		wait.until(ExpectedConditions.visibilityOf(sentList.get(0)));
+		waitElementVisible(sentList.get(0));
 		for (WebElement sent : sentList) {
 			if (sentSenderSpan.getText().equals(mail.getSender()) // search email sender
 					&& sentSubjectSpan.getText().equals(mail.getSubject())) { // search email subject
