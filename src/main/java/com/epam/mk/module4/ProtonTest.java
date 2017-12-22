@@ -32,8 +32,8 @@ public class ProtonTest {
 }
 
 	@Test
-	public void loginPageTest() {
-		Assert.assertNotNull(createDruftPage = new LoginPage(driver).openUrl().loginAction());
+	public void loginPageTest() throws ProtonException {
+		createDruftPage = new LoginPage(driver).openUrl().loginAction();
 	}
 
 	@Test(dependsOnMethods = { "loginPageTest" }, dataProvider = "myDetails")

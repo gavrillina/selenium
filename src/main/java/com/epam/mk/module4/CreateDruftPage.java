@@ -92,10 +92,9 @@ public class CreateDruftPage extends AbstractPage {
 					driver.switchTo().defaultContent();
 					druftCloseButton.click();				
 					wait.until(ExpectedConditions.invisibilityOfElementLocated(DRUFT_CLOSE_BUTTON_WAIT));
-					//System.out.println("Skipped");
+					//System.out.println("The druft is skipped");
 				}
 			}
-			
 		}
 		throw new ProtonException("The druft has not been found");
 	}

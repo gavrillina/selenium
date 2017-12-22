@@ -5,5 +5,5 @@ public class ProtonException extends Exception {
 
 	public ProtonException(String s) {
 		super(s);
-}
+	}
 }
