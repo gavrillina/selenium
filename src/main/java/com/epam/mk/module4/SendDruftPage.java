@@ -39,7 +39,7 @@ public class SendDruftPage extends AbstractPage {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		druftSendButton.click();
 		wait.until(ExpectedConditions.visibilityOf(greenPopup));
-		System.out.println("The druft has been sent");
+		//System.out.println("The druft has been sent");
 		// поиск в отправленных:
 		sentPageButton.click();
 		wait.until(ExpectedConditions.visibilityOf(sentList.get(0)));

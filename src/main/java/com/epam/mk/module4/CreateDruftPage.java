@@ -77,7 +77,7 @@ public class CreateDruftPage extends AbstractPage {
 		wait.until(ExpectedConditions.visibilityOf(greenPopup));
 		druftCloseButton.click(); // close druft message
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(DRUFT_CLOSE_BUTTON_WAIT));
-		System.out.println("The druft has been created");
+		//System.out.println("The druft has been created");
 		return this;
 	}
 
@@ -90,18 +90,18 @@ public class CreateDruftPage extends AbstractPage {
 				driver.findElement(openKost(i)).click();
 				driver.switchTo().frame(druftFrame);
 				if (druftBodyInput.getText().equals(mail.getBody())) {
-					System.out.println("The druft has been found");
+					//System.out.println("The druft has been found");
 					driver.switchTo().defaultContent();
 					return new SendDruftPage(driver);
 				} else {
 					driver.switchTo().defaultContent();
 					druftCloseButton.click();				
 					wait.until(ExpectedConditions.invisibilityOfElementLocated(DRUFT_CLOSE_BUTTON_WAIT));
-					System.out.println("Skipped");
+					//System.out.println("Skipped");
 				}
 			}
 		}
-		System.out.println("The druft has not been found");
+		//System.out.println("The druft has not been found");
 		return null;
 	}
 
@@ -115,7 +115,7 @@ public class CreateDruftPage extends AbstractPage {
 //				 druft.click();
 //				 driver.switchTo().frame(druftFrame);
 //				 if (druftBodyInput.getText().equals(PropertiesLoader.getInfo("BODY"))) { // search email body
-//					 System.out.println("The druft has been found");
+//					 //System.out.println("The druft has been found");
 //					 driver.switchTo().defaultContent();
 //					 return new SendDruftPage(driver);
 //					 } else {
@@ -125,7 +125,7 @@ public class CreateDruftPage extends AbstractPage {
 //						 }
 //				 }
 //			 }
-//		 System.out.println("The druft has not been found");
+//		 //System.out.println("The druft has not been found");
 //		 return null;
 //		 }
 }

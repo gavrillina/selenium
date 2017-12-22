@@ -42,7 +42,6 @@ public class ProtonTest {
 		Assert.assertNotNull(sendDruftPage = createDruftPage.createDruft(mail).searchDruft(mail));
 	}
 
-
 	@Test(dependsOnMethods = { "createDruftPageTest" }, dataProvider = "myDetails")
 	public void sendDruftPageTest(Mail mail) throws InterruptedException {
 		Assert.assertEquals(sendDruftPage.sendAction(mail), "Now your email is in SENT folder");
