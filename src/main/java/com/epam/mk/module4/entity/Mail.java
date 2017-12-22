@@ -1,4 +1,4 @@
-package com.epam.mk.module4;
+package com.epam.mk.module4.entity;
 
 public class Mail {
 	private String sender;

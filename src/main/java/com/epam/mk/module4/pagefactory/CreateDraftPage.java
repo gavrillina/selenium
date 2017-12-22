@@ -1,4 +1,4 @@
-package com.epam.mk.module4;
+package com.epam.mk.module4.pagefactory;
 
 import java.util.List;
 
@@ -9,6 +9,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.epam.mk.module4.ProtonException;
+import com.epam.mk.module4.entity.Mail;
 
 public class CreateDraftPage extends AbstractPage {
 	WebDriverWait wait = new WebDriverWait(driver, 4);

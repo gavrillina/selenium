@@ -10,6 +10,11 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.epam.mk.module4.entity.Mail;
+import com.epam.mk.module4.pagefactory.CreateDraftPage;
+import com.epam.mk.module4.pagefactory.LoginPage;
+import com.epam.mk.module4.pagefactory.SendDraftPage;
+
 public class ProtonTest {
 	private WebDriver driver;
 	CreateDraftPage createDraftPage;
