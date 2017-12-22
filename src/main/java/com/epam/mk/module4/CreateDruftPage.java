@@ -129,8 +129,3 @@ public class CreateDruftPage extends AbstractPage {
 //		 return null;
 //		 }
 }
-
-
-
-
-
