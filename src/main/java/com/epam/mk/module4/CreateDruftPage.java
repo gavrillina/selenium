@@ -66,12 +66,12 @@ public class CreateDruftPage extends AbstractPage {
 		return By.xpath("html/body/div[2]/div[1]/div/div[1]/section/div[" + i + "]");
 	}
 
-	public CreateDruftPage createDruft() {
+	public CreateDruftPage createDruft(Mail mail) {
 		druftCreateButton.click();
-		new Actions(driver).sendKeys(druftSubjectInput, PropertiesLoader.getInfo("SUBJECT")).build().perform();
-		druftSenderInput.sendKeys(PropertiesLoader.getInfo("SENDER"));
+		druftSubjectInput.sendKeys(mail.getSubject());
+		druftSenderInput.sendKeys(mail.getSender());
 		driver.switchTo().frame(druftFrame);
-		new Actions(driver).sendKeys(druftBodyInput, PropertiesLoader.getInfo("BODY")).build().perform();
+		new Actions(driver).sendKeys(druftBodyInput, mail.getBody()).build().perform();
 		driver.switchTo().defaultContent();
 		druftSaveButton.click(); // save druft message
 		wait.until(ExpectedConditions.visibilityOf(greenPopup));
@@ -81,15 +81,15 @@ public class CreateDruftPage extends AbstractPage {
 		return this;
 	}
 
-	public SendDruftPage searchDruft() {
+	public SendDruftPage searchDruft(Mail mail) {
 		druftPageButton.click(); // open druft folder
 		wait.until(ExpectedConditions.visibilityOf(druftList.get(0)));
 		for (int i = 1; i <= druftList.size(); i++) {
-			if (driver.findElement(senderKost(i)).getText().equals(PropertiesLoader.getInfo("SENDER"))
-					&& driver.findElement(subjectKost(i)).getText().equals(PropertiesLoader.getInfo("SUBJECT"))) {
+			if (driver.findElement(senderKost(i)).getText().equals(mail.getSender())
+					&& driver.findElement(subjectKost(i)).getText().equals(mail.getSubject())) {
 				driver.findElement(openKost(i)).click();
 				driver.switchTo().frame(druftFrame);
-				if (druftBodyInput.getText().equals(PropertiesLoader.getInfo("BODY"))) {
+				if (druftBodyInput.getText().equals(mail.getBody())) {
 					System.out.println("The druft has been found");
 					driver.switchTo().defaultContent();
 					return new SendDruftPage(driver);

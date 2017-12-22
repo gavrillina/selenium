@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class ProtonTest {
@@ -25,21 +26,26 @@ public class ProtonTest {
 		driver.manage().window().maximize();
 	}
 
+	@DataProvider
+	public Object[][] myDetails() {
+		return new Object[][] { { new Mail("test@mail.ru", "my_subject", "hello everybody") }, };
+}
+
 	@Test
 	public void loginPageTest() {
 		Assert.assertNotNull(createDruftPage = new LoginPage(driver).openUrl().loginAction());
 	}
 
-	@Test(dependsOnMethods = { "loginPageTest" })
-	public void createDruftPageTest() {
+	@Test(dependsOnMethods = { "loginPageTest" }, dataProvider = "myDetails")
+	public void createDruftPageTest(Mail mail) {
 		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-		Assert.assertNotNull(sendDruftPage = createDruftPage.createDruft().searchDruft());
-		// Assert.assertNotNull(sendDruftPage = createDruftPage.searchDruft()); // ЧТОБЫ ПРОПУСТИТЬ СОЗДАНИЕ ПИСЬМА И НАЧАТЬ С ПОИСКА В ЧЕРНОВИКАХ
+		Assert.assertNotNull(sendDruftPage = createDruftPage.createDruft(mail).searchDruft(mail));
 	}
 
-	@Test(dependsOnMethods = { "createDruftPageTest" })
-	public void sendDruftPageTest() throws InterruptedException {
-		Assert.assertEquals(sendDruftPage.sendAction(), "Now your email is in SENT folder");
+
+	@Test(dependsOnMethods = { "createDruftPageTest" }, dataProvider = "myDetails")
+	public void sendDruftPageTest(Mail mail) throws InterruptedException {
+		Assert.assertEquals(sendDruftPage.sendAction(mail), "Now your email is in SENT folder");
 	}
 
 	@AfterTest(enabled = true)
