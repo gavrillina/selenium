@@ -81,7 +81,7 @@ public class CreateDruftPage extends AbstractPage {
 		return this;
 	}
 
-	public SendDruftPage searchDruft(Mail mail) {
+	public SendDruftPage searchDruft(Mail mail) throws ProtonException {
 		druftPageButton.click(); // open druft folder
 		wait.until(ExpectedConditions.visibilityOf(druftList.get(0)));
 		for (int i = 1; i <= druftList.size(); i++) {
@@ -100,9 +100,9 @@ public class CreateDruftPage extends AbstractPage {
 					//System.out.println("Skipped");
 				}
 			}
+			
 		}
-		//System.out.println("The druft has not been found");
-		return null;
+		throw new ProtonException("The druft has not been found");
 	}
 
 //	 public SendDruftPage searchDruftOff() {

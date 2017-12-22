@@ -37,13 +37,13 @@ public class ProtonTest {
 	}
 
 	@Test(dependsOnMethods = { "loginPageTest" }, dataProvider = "myDetails")
-	public void createDruftPageTest(Mail mail) {
+	public void createDruftPageTest(Mail mail) throws ProtonException {
 		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-		Assert.assertNotNull(sendDruftPage = createDruftPage.createDruft(mail).searchDruft(mail));
+		sendDruftPage = createDruftPage.createDruft(mail).searchDruft(mail);
 	}
 
 	@Test(dependsOnMethods = { "createDruftPageTest" }, dataProvider = "myDetails")
-	public void sendDruftPageTest(Mail mail) throws InterruptedException {
+	public void sendDruftPageTest(Mail mail) throws ProtonException {
 		Assert.assertEquals(sendDruftPage.sendAction(mail), "Now your email is in SENT folder");
 	}
 

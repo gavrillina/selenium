@@ -35,7 +35,7 @@ public class SendDruftPage extends AbstractPage {
 	@FindBy(xpath = "//span[@class = 'subject-text ellipsis']")
 	private WebElement sentSubjectSpan;
 
-	public String sendAction(Mail mail)  {
+	public String sendAction(Mail mail) throws ProtonException {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		druftSendButton.click();
 		wait.until(ExpectedConditions.visibilityOf(greenPopup));
@@ -53,7 +53,8 @@ public class SendDruftPage extends AbstractPage {
 				sentCloseButton.click();
 			}
 		}
-		return null;	
+		
+		throw new ProtonException("The sent has not been found");	
 	}
 
 //	private final By SENTS = By.xpath("//*[@ng-repeat = 'conversation in conversations track by conversation.ID']");
