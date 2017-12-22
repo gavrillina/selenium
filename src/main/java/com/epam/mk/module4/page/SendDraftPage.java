@@ -26,7 +26,7 @@ public class SendDraftPage extends AbstractPage {
 	@FindBy(xpath = "//span[@ng-bind-html='$message']")
 	private WebElement greenMessage;
 
-	@FindBy(xpath = "//*[@ng-repeat = 'conversation in conversations track by conversation.ID']")
+	@FindBy(xpath = "//div[@ng-repeat = 'conversation in conversations track by conversation.ID']")
 	private List<WebElement>sentList;
 
 	@FindBy(xpath = "//span[@class = 'senders-name']")

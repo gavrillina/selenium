@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import com.epam.mk.module4.PropertiesLoader;
+import com.epam.mk.module4.PropertyLoader;
 import com.epam.mk.module4.exception.CannotLoginException;
 
 public class LoginPage extends AbstractPage {
@@ -29,14 +29,14 @@ public class LoginPage extends AbstractPage {
 	private WebElement welcomeMessage;
 
 	public LoginPage openUrl() {
-		driver.get(PropertiesLoader.getInfo("URL"));
+		driver.get(PropertyLoader.getInfo("URL"));
 		return this;
 	}
 
 	public CreateDraftPage loginAction() throws CannotLoginException {
 		loginUrlButton.click();
-		usernameInput.sendKeys(PropertiesLoader.getInfo("USERNAME"));
-		passwordInput.sendKeys(PropertiesLoader.getInfo("PASSWORD"));
+		usernameInput.sendKeys(PropertyLoader.getInfo("USERNAME"));
+		passwordInput.sendKeys(PropertyLoader.getInfo("PASSWORD"));
 		loginButton.click();
 		if (welcomeMessage.isDisplayed()) {
 			return new CreateDraftPage(driver);
