@@ -17,8 +17,8 @@ import com.epam.mk.module4.pagefactory.SendDraftPage;
 
 public class ProtonTest {
 	private WebDriver driver;
-	CreateDraftPage createDraftPage;
-	SendDraftPage sendDraftPage;
+	private CreateDraftPage createDraftPage;
+	private SendDraftPage sendDraftPage;
 
 	@BeforeTest
 	private void initDriver() {
