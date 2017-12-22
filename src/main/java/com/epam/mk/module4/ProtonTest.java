@@ -23,8 +23,8 @@ public class ProtonTest {
 	@BeforeTest
 	private void initDriver() {
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-		//ChromeOptions chromeOption = new ChromeOptions();
-		//chromeOption.setBinary("C:\\Users\\user\\Desktop\\chrome\\chrome.exe");
+		// ChromeOptions chromeOption = new ChromeOptions();
+		// chromeOption.setBinary("C:\\Users\\user\\Desktop\\chrome\\chrome.exe");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -34,7 +34,8 @@ public class ProtonTest {
 	@DataProvider
 	public Object[][] myDetails() {
 		return new Object[][] { { new Mail("test@mail.ru", "my_subject", "hello everybody") }, };
-}
+	}
+
 	@Test
 	public void loginPageTest() throws ProtonException {
 		createDraftPage = new LoginPage(driver).openUrl().loginAction();
