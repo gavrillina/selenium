@@ -42,7 +42,7 @@ public class ProtonTest {
 		sendDruftPage = createDruftPage.createDruft(mail).searchDruft(mail);
 	}
 
-	@Test(dependsOnMethods = { "createDruftPageTest" }, dataProvider = "myDetails")
+	@Test(dependsOnMethods = { "createDruftPageTest" }, dataProvider = "myDetails", enabled = true)
 	public void sendDruftPageTest(Mail mail) throws ProtonException {
 		Assert.assertEquals(sendDruftPage.sendAction(mail), "Now your email is in SENT folder");
 	}

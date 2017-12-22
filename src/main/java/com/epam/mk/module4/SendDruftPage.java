@@ -53,7 +53,6 @@ public class SendDruftPage extends AbstractPage {
 				sentCloseButton.click();
 			}
 		}
-		
 		throw new ProtonException("The sent has not been found");	
 	}
 

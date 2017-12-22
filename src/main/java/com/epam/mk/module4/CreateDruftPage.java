@@ -47,11 +47,6 @@ public class CreateDruftPage extends AbstractPage {
 	@FindBy(xpath = "//div[@ng-repeat = 'conversation in conversations track by conversation.ID']")
 	private List<WebElement>druftList;
 
-	@SuppressWarnings("unused")
-	private static final By druftListSender = By.xpath("//span[@class = 'senders-name']");
-	@SuppressWarnings("unused")
-	private static final By druftListSubject = By.xpath("//span[@class = 'subject-text ellipsis']");
-
 	private static final By DRUFT_CLOSE_BUTTON_WAIT = By.xpath("//button[@ng-click='openCloseModal(message)']");
 
 	private By senderKost(int i) {
@@ -105,6 +100,9 @@ public class CreateDruftPage extends AbstractPage {
 		throw new ProtonException("The druft has not been found");
 	}
 
+//	private static final By druftListSender = By.xpath("//span[@class = 'senders-name']");
+//	private static final By druftListSubject = By.xpath("//span[@class = 'subject-text ellipsis']");
+	
 //	 public SendDruftPage searchDruftOff() {
 //		 druftPageButton.click(); // open druft folder
 //		 wait.until(ExpectedConditions.visibilityOf(druftList.get(0))); // ЖДАТЬ ПОКА ПОДГРУЗЯТСЯ ЧЕРНОВИКИ
