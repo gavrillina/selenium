@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -15,7 +15,7 @@ public class ProtonTest {
 	CreateDraftPage createDraftPage;
 	SendDraftPage sendDraftPage;
 
-	@BeforeClass
+	@BeforeTest
 	private void initDriver() {
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 		//ChromeOptions chromeOption = new ChromeOptions();
