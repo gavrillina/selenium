@@ -45,8 +45,6 @@ public class SendDraftPage extends AbstractPage {
 					&& sentSubjectSpan.getText().equals(mail.getSubject())) { // search email subject
 				sent.click();
 				return "Now your email is in SENT folder";
-			} else {
-				driver.switchTo().defaultContent();
 			}
 		}
 		throw new DraftNotFoundException("The sent has not been found");
