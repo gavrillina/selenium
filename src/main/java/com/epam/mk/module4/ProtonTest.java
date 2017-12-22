@@ -12,8 +12,8 @@ import org.testng.annotations.Test;
 
 public class ProtonTest {
 	private WebDriver driver;
-	CreateDruftPage createDruftPage;
-	SendDruftPage sendDruftPage;
+	CreateDraftPage createDraftPage;
+	SendDraftPage sendDraftPage;
 
 	@BeforeClass
 	private void initDriver() {
@@ -30,21 +30,20 @@ public class ProtonTest {
 	public Object[][] myDetails() {
 		return new Object[][] { { new Mail("test@mail.ru", "my_subject", "hello everybody") }, };
 }
-
 	@Test
 	public void loginPageTest() throws ProtonException {
-		createDruftPage = new LoginPage(driver).openUrl().loginAction();
+		createDraftPage = new LoginPage(driver).openUrl().loginAction();
 	}
 
 	@Test(dependsOnMethods = { "loginPageTest" }, dataProvider = "myDetails")
-	public void createDruftPageTest(Mail mail) throws ProtonException {
+	public void createDraftPageTest(Mail mail) throws ProtonException {
 		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-		sendDruftPage = createDruftPage.createDruft(mail).searchDruft(mail);
+		sendDraftPage = createDraftPage.createDraft(mail).searchDraft(mail);
 	}
 
-	@Test(dependsOnMethods = { "createDruftPageTest" }, dataProvider = "myDetails", enabled = true)
-	public void sendDruftPageTest(Mail mail) throws ProtonException {
-		Assert.assertEquals(sendDruftPage.sendAction(mail), "Now your email is in SENT folder");
+	@Test(dependsOnMethods = { "createDraftPageTest" }, dataProvider = "myDetails", enabled = true)
+	public void sendDraftPageTest(Mail mail) throws ProtonException {
+		Assert.assertEquals(sendDraftPage.sendAction(mail), "Now your email is in SENT folder");
 	}
 
 	@AfterTest(enabled = true)

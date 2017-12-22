@@ -30,13 +30,13 @@ public class LoginPage extends AbstractPage {
 		return this;
 	}
 
-	public CreateDruftPage loginAction() throws ProtonException {
+	public CreateDraftPage loginAction() throws ProtonException {
 		loginPageButton.click();
 		usernameInput.sendKeys(PropertiesLoader.getInfo("USERNAME"));
 		passwordInput.sendKeys(PropertiesLoader.getInfo("PASSWORD"));
 		enterButton.click();
 		if (welcomeText.getText().equals(PropertiesLoader.getInfo("WELCOME"))) {
-			return new CreateDruftPage(driver);
+			return new CreateDraftPage(driver);
 		} else
 			throw new ProtonException("Login failed");
 	}

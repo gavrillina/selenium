@@ -10,44 +10,44 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CreateDruftPage extends AbstractPage {
+public class CreateDraftPage extends AbstractPage {
 	WebDriverWait wait = new WebDriverWait(driver, 4);
 
-	protected CreateDruftPage(WebDriver driver) {
+	protected CreateDraftPage(WebDriver driver) {
 		super(driver);
 	}
 
 	@FindBy(xpath = "//button[@class='compose pm_button sidebar-btn-compose']")
-	private WebElement druftCreateButton;
+	private WebElement draftCreateButton;
 
 	@FindBy(xpath = "//input[@id='autocomplete']")
-	private WebElement druftSenderInput;
+	private WebElement draftSenderInput;
 
 	@FindBy(xpath = "//input[@ng-model='message.Subject']")
-	private WebElement druftSubjectInput;
+	private WebElement draftSubjectInput;
 
 	@FindBy(xpath = "//iframe[@class = 'squireIframe']")
-	private WebElement druftFrame;
+	private WebElement draftFrame;
 
 	@FindBy(xpath = "html/body/div[1]")
-	private WebElement druftBodyInput;
+	private WebElement draftBodyInput;
 
 	@FindBy(xpath = "//button[@ng-click='save(message, true, false)']")
-	private WebElement druftSaveButton;
+	private WebElement draftSaveButton;
 
 	@FindBy(xpath = "//button[@ng-click='openCloseModal(message)']")
-	private WebElement druftCloseButton;
+	private WebElement draftCloseButton;
 
 	@FindBy(xpath = "//a[@href='/drafts']")
-	private WebElement druftPageButton;
+	private WebElement draftPageButton;
 
 	@FindBy(xpath = "//span[@ng-bind-html='$message']")
 	private WebElement greenPopup;
 
 	@FindBy(xpath = "//div[@ng-repeat = 'conversation in conversations track by conversation.ID']")
-	private List<WebElement>druftList;
+	private List<WebElement>draftList;
 
-	private static final By DRUFT_CLOSE_BUTTON_WAIT = By.xpath("//button[@ng-click='openCloseModal(message)']");
+	private static final By DRAFT_CLOSE_BUTTON_WAIT = By.xpath("//button[@ng-click='openCloseModal(message)']");
 
 	private By senderKost(int i) {
 		return By.xpath("html/body/div[2]/div[1]/div/div[1]/section/div[" + i + "]/div[2]/div[2]/span/span");
@@ -61,42 +61,42 @@ public class CreateDruftPage extends AbstractPage {
 		return By.xpath("html/body/div[2]/div[1]/div/div[1]/section/div[" + i + "]");
 	}
 
-	public CreateDruftPage createDruft(Mail mail) {
-		druftCreateButton.click();
-		druftSubjectInput.sendKeys(mail.getSubject());
-		druftSenderInput.sendKeys(mail.getSender());
-		driver.switchTo().frame(druftFrame);
-		new Actions(driver).sendKeys(druftBodyInput, mail.getBody()).build().perform();
+	public CreateDraftPage createDraft(Mail mail) {
+		draftCreateButton.click();
+		draftSubjectInput.sendKeys(mail.getSubject());
+		draftSenderInput.sendKeys(mail.getSender());
+		driver.switchTo().frame(draftFrame);
+		new Actions(driver).sendKeys(draftBodyInput, mail.getBody()).build().perform();
 		driver.switchTo().defaultContent();
-		druftSaveButton.click(); // save druft message
+		draftSaveButton.click(); // save draft message
 		wait.until(ExpectedConditions.visibilityOf(greenPopup));
-		druftCloseButton.click(); // close druft message
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(DRUFT_CLOSE_BUTTON_WAIT));
-		//System.out.println("The druft has been created");
+		draftCloseButton.click(); // close draft message
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(DRAFT_CLOSE_BUTTON_WAIT));
+		//System.out.println("The draft has been created");
 		return this;
 	}
 
-	public SendDruftPage searchDruft(Mail mail) throws ProtonException {
-		druftPageButton.click(); // open druft folder
-		wait.until(ExpectedConditions.visibilityOf(druftList.get(0)));
-		for (int i = 1; i <= druftList.size(); i++) {
+	public SendDraftPage searchDraft(Mail mail) throws ProtonException {
+		draftPageButton.click(); // open draft folder
+		wait.until(ExpectedConditions.visibilityOf(draftList.get(0)));
+		for (int i = 1; i <= draftList.size(); i++) {
 			if (driver.findElement(senderKost(i)).getText().equals(mail.getSender())
 					&& driver.findElement(subjectKost(i)).getText().equals(mail.getSubject())) {
 				driver.findElement(openKost(i)).click();
-				driver.switchTo().frame(druftFrame);
-				if (druftBodyInput.getText().equals(mail.getBody())) {
-					//System.out.println("The druft has been found");
+				driver.switchTo().frame(draftFrame);
+				if (draftBodyInput.getText().equals(mail.getBody())) {
+					//System.out.println("The draft has been found");
 					driver.switchTo().defaultContent();
-					return new SendDruftPage(driver);
+					return new SendDraftPage(driver);
 				} else {
 					driver.switchTo().defaultContent();
-					druftCloseButton.click();				
-					wait.until(ExpectedConditions.invisibilityOfElementLocated(DRUFT_CLOSE_BUTTON_WAIT));
-					//System.out.println("The druft is skipped");
+					draftCloseButton.click();				
+					wait.until(ExpectedConditions.invisibilityOfElementLocated(DRAFT_CLOSE_BUTTON_WAIT));
+					//System.out.println("The draft is skipped");
 				}
 			}
 		}
-		throw new ProtonException("The druft has not been found");
+		throw new ProtonException("The draft has not been found");
 	}
 
 //	private static final By druftListSender = By.xpath("//span[@class = 'senders-name']");

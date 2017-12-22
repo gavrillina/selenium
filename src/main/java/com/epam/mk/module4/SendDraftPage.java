@@ -8,14 +8,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SendDruftPage extends AbstractPage {
+public class SendDraftPage extends AbstractPage {
 
-	protected SendDruftPage(WebDriver driver) {
+	protected SendDraftPage(WebDriver driver) {
 		super(driver);
 	}
 
 	@FindBy(xpath = "//button[@class='pm_button primary mobileFull composer-btn-send btnSendMessage-btn-action']")
-	private WebElement druftSendButton;
+	private WebElement draftSendButton;
 
 	@FindBy(xpath = "//a[@href='/sent']")
 	private WebElement sentPageButton;
@@ -37,9 +37,9 @@ public class SendDruftPage extends AbstractPage {
 
 	public String sendAction(Mail mail) throws ProtonException {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
-		druftSendButton.click();
+		draftSendButton.click();
 		wait.until(ExpectedConditions.visibilityOf(greenPopup));
-		//System.out.println("The druft has been sent");
+		//System.out.println("The draft has been sent");
 		// поиск в отправленных:
 		sentPageButton.click();
 		wait.until(ExpectedConditions.visibilityOf(sentList.get(0)));
