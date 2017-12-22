@@ -59,6 +59,5 @@ public class SendDraftPage extends AbstractPage {
 //	private final By SENTS = By.xpath("//*[@ng-repeat = 'conversation in conversations track by conversation.ID']");
 //	private final By SENT_SENDER = By.xpath("//span[@class = 'senders-name']");
 //	private final By SENT_SUBJECT = By.xpath("//span[@class = 'subject-text ellipsis']");	
-	
-	
+
 }
