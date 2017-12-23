@@ -69,16 +69,16 @@ public class CreateDraftPage extends AbstractPage {
 		new Actions(driver).sendKeys(draftFrameBodyInput, mail.getBody()).build().perform();
 		driver.switchTo().defaultContent();
 		draftSaveButton.click(); // save draft message
-		waitElementVisible(greenMessage);
+		waitForElementVisible(greenMessage);
 		draftCloseButton.click(); // close draft message
-		waitLocatorInvisible(DRAFT_CLOSE_BUTTON);
+		waitForLocatorInvisible(DRAFT_CLOSE_BUTTON);
 		//System.out.println("The draft has been created");
 		return this;
 	}
 
 	public SendDraftPage searchDraft(Mail mail) throws DraftNotFoundException {
 		draftFolderUrl.click(); // open draft folder
-		waitElementVisible(draftList.get(0));
+		waitForElementVisible(draftList.get(0));
 		for (int i = 1; i <= draftList.size(); i++) {
 			if (driver.findElement(senderKost(i)).getText().equals(mail.getSender())
 					&& driver.findElement(subjectKost(i)).getText().equals(mail.getSubject())) {
@@ -91,7 +91,7 @@ public class CreateDraftPage extends AbstractPage {
 				} else {
 					driver.switchTo().defaultContent();
 					draftCloseButton.click();				
-					waitLocatorInvisible(DRAFT_CLOSE_BUTTON);
+					waitForLocatorInvisible(DRAFT_CLOSE_BUTTON);
 					//System.out.println("The draft is skipped");
 				}
 			}

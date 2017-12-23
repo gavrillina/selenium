@@ -16,11 +16,11 @@ public class AbstractPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	protected void waitElementVisible(WebElement webElement) {
+	protected void waitForElementVisible(WebElement webElement) {
 		new WebDriverWait(driver, TIME_OUT_IN_SECONDS).until(ExpectedConditions.visibilityOf(webElement));
 	}
 
-	protected void waitLocatorInvisible(By locator) {
+	protected void waitForLocatorInvisible(By locator) {
 		new WebDriverWait(driver, TIME_OUT_IN_SECONDS).until(ExpectedConditions.invisibilityOfElementLocated(locator));
 	}
 

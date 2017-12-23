@@ -35,11 +35,11 @@ public class SendDraftPage extends AbstractPage {
 
 	public String sendDraft(Mail mail) throws DraftNotFoundException {
 		draftSendButton.click();
-		waitElementVisible(greenMessage);
+		waitForElementVisible(greenMessage);
 		//System.out.println("The draft has been sent");
 		// поиск в отправленных:
 		sentFolderUrl.click();
-		waitElementVisible(sentList.get(0));
+		waitForElementVisible(sentList.get(0));
 		for (WebElement sent : sentList) {
 			if (sentSenderSpan.getText().equals(mail.getSender()) // search email sender
 					&& sentSubjectSpan.getText().equals(mail.getSubject())) { // search email subject
