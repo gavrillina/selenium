@@ -19,7 +19,7 @@ public class SendDraftPage extends AbstractPage {
 	private WebElement draftSendButton;
 
 	@FindBy(xpath = "//a[@href='/sent']")
-	private WebElement sentsUrl;
+	private WebElement sentFolderUrl;
 
 	@FindBy(xpath = "//span[@ng-bind-html='$message']")
 	private WebElement greenMessage;
@@ -38,7 +38,7 @@ public class SendDraftPage extends AbstractPage {
 		waitElementVisible(greenMessage);
 		//System.out.println("The draft has been sent");
 		// поиск в отправленных:
-		sentsUrl.click();
+		sentFolderUrl.click();
 		waitElementVisible(sentList.get(0));
 		for (WebElement sent : sentList) {
 			if (sentSenderSpan.getText().equals(mail.getSender()) // search email sender

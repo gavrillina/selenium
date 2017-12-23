@@ -39,7 +39,7 @@ public class CreateDraftPage extends AbstractPage {
 	private WebElement draftCloseButton;
 
 	@FindBy(xpath = "//a[@href='/drafts']")
-	private WebElement draftsUrl;
+	private WebElement draftFolderUrl;
 
 	@FindBy(xpath = "//span[@ng-bind-html='$message']")
 	private WebElement greenMessage;
@@ -47,7 +47,7 @@ public class CreateDraftPage extends AbstractPage {
 	@FindBy(xpath = "//div[@ng-repeat = 'conversation in conversations track by conversation.ID']")
 	private List<WebElement>draftList;
 
-	private static final By DRAFT_CLOSE_BUTTON_WAIT = By.xpath("//button[@ng-click='openCloseModal(message)']");
+	private static final By DRAFT_CLOSE_BUTTON = By.xpath("//button[@ng-click='openCloseModal(message)']");
 
 	private By senderKost(int i) {
 		return By.xpath("html/body/div[2]/div[1]/div/div[1]/section/div[" + i + "]/div[2]/div[2]/span/span");
@@ -71,13 +71,13 @@ public class CreateDraftPage extends AbstractPage {
 		draftSaveButton.click(); // save draft message
 		waitElementVisible(greenMessage);
 		draftCloseButton.click(); // close draft message
-		waitLocatorInvisible(DRAFT_CLOSE_BUTTON_WAIT);
+		waitLocatorInvisible(DRAFT_CLOSE_BUTTON);
 		//System.out.println("The draft has been created");
 		return this;
 	}
 
 	public SendDraftPage searchDraft(Mail mail) throws DraftNotFoundException {
-		draftsUrl.click(); // open draft folder
+		draftFolderUrl.click(); // open draft folder
 		waitElementVisible(draftList.get(0));
 		for (int i = 1; i <= draftList.size(); i++) {
 			if (driver.findElement(senderKost(i)).getText().equals(mail.getSender())
@@ -91,7 +91,7 @@ public class CreateDraftPage extends AbstractPage {
 				} else {
 					driver.switchTo().defaultContent();
 					draftCloseButton.click();				
-					waitLocatorInvisible(DRAFT_CLOSE_BUTTON_WAIT);
+					waitLocatorInvisible(DRAFT_CLOSE_BUTTON);
 					//System.out.println("The draft is skipped");
 				}
 			}
