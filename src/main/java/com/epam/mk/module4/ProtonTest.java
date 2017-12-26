@@ -35,8 +35,7 @@ public class ProtonTest {
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();	
-		
-		
+
 		// System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 //		// ChromeOptions chromeOption = new ChromeOptions();
 //		// chromeOption.setBinary("C:\\Users\\user\\Desktop\\chrome\\chrome.exe");
