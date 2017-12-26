@@ -20,8 +20,8 @@ public class JqueryuiTest {
 		ChromeOptions chromeOption = new ChromeOptions();
 		chromeOption.setBinary("C:\\Users\\user\\Desktop\\chrome\\chrome.exe");
 		driver = new ChromeDriver();
-		driver.manage().timeouts().pageLoadTimeout(70, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(70, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 	}
 
