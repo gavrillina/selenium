@@ -1,9 +1,12 @@
 package com.epam.mk.module4;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -23,14 +26,23 @@ public class ProtonTest {
 	private SendDraftPage sendDraftPage;
 
 	@BeforeTest
-	private void initDriver() {
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-		// ChromeOptions chromeOption = new ChromeOptions();
-		// chromeOption.setBinary("C:\\Users\\user\\Desktop\\chrome\\chrome.exe");
-		driver = new ChromeDriver();
+	private void initDriver()   {
+		try {
+			driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444/wd/hub"), DesiredCapabilities.chrome());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.manage().window().maximize();
+		driver.manage().window().maximize();	
+		
+		// System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+//		// ChromeOptions chromeOption = new ChromeOptions();
+//		// chromeOption.setBinary("C:\\Users\\user\\Desktop\\chrome\\chrome.exe");
+//		driver = new ChromeDriver();
+//		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+//		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//		driver.manage().window().maximize();
 	}
 
 	@Test

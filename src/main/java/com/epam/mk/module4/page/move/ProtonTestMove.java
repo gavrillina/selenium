@@ -1,6 +1,5 @@
 package com.epam.mk.module4.page.move;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
