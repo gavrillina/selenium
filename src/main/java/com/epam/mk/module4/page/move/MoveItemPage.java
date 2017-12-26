@@ -36,13 +36,16 @@ public class MoveItemPage extends AbstractPage {
 	
 	public MoveItemPage moveToSpam(Mail mail) throws DraftNotFoundException, InterruptedException {
 		waitForElementVisible(InboxList.get(0));
+		Thread.sleep(4000);
 		for (int i = 1; i <= InboxList.size(); i++) {
 			if (driver.findElement(senderKost(i)).getText().equals(mail.getSender())) {
 				Actions builder = new Actions(driver);
-				Action dragAndDrop = builder.clickAndHold(driver.findElement(openKost(i))).
-						moveToElement(driver.findElement(openKost(i))).release(spamFolderUrl).build();
+				Action dragAndDrop = builder.clickAndHold(driver.findElement(openKost(i)))
+				    .moveByOffset(-1, -1)
+				    .moveToElement(spamFolderUrl)
+				    .release(spamFolderUrl)
+				    .build();
 				dragAndDrop.perform();
-				
 			}
 		}
 		throw new DraftNotFoundException("");
