@@ -7,16 +7,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
+
 import org.testng.annotations.Test;
 
-import com.epam.mk.module4.entity.Mail;
-import com.epam.mk.module4.exception.CannotLoginException;
-import com.epam.mk.module4.exception.DraftNotFoundException;
-
-public class ProtonTestMove {
+public class JqueryuiTest {
 	private WebDriver driver;
-	MoveItemPage moveItemPage;
+	DroppablePage moveItemPage;
 
 	@BeforeTest
 	private void initDriver() {
@@ -30,7 +26,7 @@ public class ProtonTestMove {
 //		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 //		driver.manage().window().maximize();
 		
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "src/main/resources/webdrivers/chromedriver_x86.exe");
 		ChromeOptions chromeOption = new ChromeOptions();
 		chromeOption.setBinary("C:\\Users\\user\\Desktop\\chrome\\chrome.exe");
 		driver = new ChromeDriver();
@@ -40,13 +36,8 @@ public class ProtonTestMove {
 	}
 
 	@Test
-	public void loginPageTest() throws CannotLoginException {
-		moveItemPage = new MoveLoginPage(driver).openUrl().loginAction();
-	}
-
-	@Test(dependsOnMethods = { "loginPageTest" }, dataProvider = "myDetails")
-	public void moveItemPageTest(Mail mail) throws DraftNotFoundException, InterruptedException {
-		moveItemPage.moveToSpam(mail);
+	public void droppableTest()  {
+		moveItemPage = new DroppablePage(driver).action();
 	}
 
 	@AfterTest(enabled = false)
@@ -54,8 +45,4 @@ public class ProtonTestMove {
 		driver.quit();
 	}
 
-	@DataProvider
-	public Object[][] myDetails() {
-		return new Object[][] { { new Mail("mailer-daemon@corp.mail.ru", "", "") }, };
-	}
 }

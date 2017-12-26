@@ -28,7 +28,7 @@ public class ProtonTest {
 	@BeforeTest
 	private void initDriver()   {
 		try {
-			driver = new RemoteWebDriver(new URL("http://127.0.0.1:4444/wd/hub"), DesiredCapabilities.chrome());
+			driver = new RemoteWebDriver(new URL("http://epkzkarw0446:4444/wd/hub"), DesiredCapabilities.chrome());
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
@@ -68,7 +68,7 @@ public class ProtonTest {
 
 	@DataProvider
 	public Object[][] myDetails() {
-		return new Object[][] { { new Mail("test@mail.ru", "my_subject", "hello everybody") }, };
+		return new Object[][] { { new Mail("test@mail.ru", "kazbek", "modul4.3") }, };
 	}
 
 }
