@@ -36,6 +36,21 @@ public class ProtonTest {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();	
 
+		// System.setProperty("webdriver.gecko.driver",
+		// "src/main/resources/geckodriver_x64.exe");
+		// FirefoxProfile firefoxProfile = new FirefoxProfile(new
+		// File("C:\\Users\\Kazbek_Muslayev\\Desktop\\firefox_x64_portable\\profile_selenium"));
+		// FirefoxOptions firefoxOptions = new FirefoxOptions();
+		// firefoxOptions.setBinary("C:\\Users\\Kazbek_Muslayev\\Desktop\\firefox_x64_portable\\application\\firefox.exe");
+		// firefoxOptions.setProfile(firefoxProfile);
+		// driver = new FirefoxDriver(firefoxOptions);
+		// driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+		// driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		// driver.manage().window().maximize();
+		
+		
+		
+		
 		// System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 //		// ChromeOptions chromeOption = new ChromeOptions();
 //		// chromeOption.setBinary("C:\\Users\\user\\Desktop\\chrome\\chrome.exe");
