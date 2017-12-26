@@ -14,7 +14,6 @@ public class DroppablePage extends AbstractPage {
 	public DroppablePage(WebDriver driver) {
 		super(driver);
 	}
-//a[@href='https://jqueryui.com/draggable/']
 	
 	@FindBy(xpath = "//a[@href='https://jqueryui.com/droppable/']")
 	private WebElement droppablePage;
@@ -34,7 +33,6 @@ public class DroppablePage extends AbstractPage {
 		waitForElementVisible(iFrame);
 		driver.switchTo().frame(iFrame);
 		new Actions(driver).dragAndDrop(fromObject, toObject).build().perform();
-		
 		return this;
 	}
 }
